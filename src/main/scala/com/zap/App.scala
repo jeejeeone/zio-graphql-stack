@@ -7,7 +7,7 @@ import com.zap.database.service.{AddressService, PersonService}
 import com.zap.graphql.GraphQLApi
 import com.zap.graphql.queries.PersonQuery
 import com.zap.model.AddressId
-import com.zap.repositories.{AddressDataSource, PersonDataSource}
+import com.zap.zquery.{AddressDataSource, PersonDataSource}
 import zio.*
 
 object App extends ZIOAppDefault:

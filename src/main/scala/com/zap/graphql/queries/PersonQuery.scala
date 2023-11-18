@@ -3,9 +3,9 @@ package com.zap.graphql.queries
 import com.zap.graphql.Schema.{Address, Person, PersonResponse}
 import com.zap.database.model.{Address as AddressRow, Person as PersonRow}
 import com.zap.model.AddressId
-import com.zap.repositories.AddressDataSource.GetAddress
-import com.zap.repositories.PersonDataSource.GetAllPersons
-import com.zap.repositories.{AddressDataSource, PersonDataSource}
+import com.zap.zquery.AddressDataSource.GetAddress
+import com.zap.zquery.PersonDataSource.GetAllPersons
+import com.zap.zquery.{AddressDataSource, PersonDataSource}
 import zio.query.{TaskQuery, UQuery, ZQuery}
 import zio.{URLayer, ZIO, ZLayer}
 

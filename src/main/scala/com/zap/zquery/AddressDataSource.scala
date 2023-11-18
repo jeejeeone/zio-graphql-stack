@@ -1,9 +1,9 @@
-package com.zap.repositories
+package com.zap.zquery
 
 import com.zap.database.model.Address
 import com.zap.database.service.AddressService
 import com.zap.model.AddressId
-import com.zap.repositories.AddressDataSource.GetAddress
+import com.zap.zquery.AddressDataSource.GetAddress
 import zio.query.DataSource.Batched
 import zio.query.{CompletedRequestMap, DataSource, Request}
 import zio.{Exit, URLayer, ZIO, ZLayer}

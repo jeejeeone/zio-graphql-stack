@@ -17,7 +17,9 @@ object PersonService:
 case class PersonServiceLive(chDatabase: Database.Service) extends PersonService:
   override def getPersons(): Task[List[Person]] =
     chDatabase.autoCommitOrWiden(PersonSqlQuery.getPersons)
+
   override def getPerson(id: PersonId): Task[Option[Person]] =
     chDatabase.autoCommitOrWiden(PersonSqlQuery.getPersons(id))
+
   override def getPerson(ids: List[PersonId]): Task[List[Person]] =
     chDatabase.autoCommitOrWiden(PersonSqlQuery.getPersons(ids))
