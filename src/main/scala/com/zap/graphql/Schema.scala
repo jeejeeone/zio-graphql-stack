@@ -1,6 +1,6 @@
-package com.zap
+package com.zap.graphql
 
-import com.zap.Schema.PersonResponse
+import com.zap.graphql.Schema.PersonResponse
 import com.zap.model.{AddressId, PersonId}
 import zio.query.{TaskQuery, UQuery}
 

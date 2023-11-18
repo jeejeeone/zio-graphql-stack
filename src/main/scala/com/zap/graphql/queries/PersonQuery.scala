@@ -1,25 +1,26 @@
-package com.zap.service
+package com.zap.graphql.queries
 
-import com.zap.Schema.{Address, Person, PersonResponse}
-import com.zap.model.{AddressId, PersonId}
+import com.zap.graphql.Schema.{Address, Person, PersonResponse}
+import com.zap.model.AddressId
 import com.zap.repositories.AddressDataSource.GetAddress
 import com.zap.repositories.PersonData.PersonRow
 import com.zap.repositories.PersonDataSource.GetAllPersons
 import com.zap.repositories.{AddressDataSource, PersonDataSource}
-import zio.query.{TaskQuery, UQuery, ZQuery}
+import zio.query.{TaskQuery, ZQuery}
 import zio.{URLayer, ZIO, ZLayer}
 
-trait ApiService:
+trait PersonQuery:
   def persons(): TaskQuery[PersonResponse]
 
-object ApiService:
-  val live: URLayer[AddressDataSource & PersonDataSource, ApiServiceLive] = ZLayer:
+object PersonQuery:
+  val live: URLayer[AddressDataSource & PersonDataSource, PersonQueryLive] = ZLayer:
     for
       personDataSource  <- ZIO.service[PersonDataSource]
       addressDataSource <- ZIO.service[AddressDataSource]
-    yield ApiServiceLive(personDataSource, addressDataSource)
+    yield PersonQueryLive(personDataSource, addressDataSource)
 
-case class ApiServiceLive(personDataSource: PersonDataSource, addressDataSource: AddressDataSource) extends ApiService:
+case class PersonQueryLive(personDataSource: PersonDataSource, addressDataSource: AddressDataSource)
+    extends PersonQuery:
   override def persons(): TaskQuery[PersonResponse] =
     val personsQuery: TaskQuery[List[PersonRow]] =
       ZQuery.fromRequest(GetAllPersons())(personDataSource.allPersonsDataSource)
