@@ -1,15 +1,12 @@
 package com.zap
 
 import com.zap.Schema.PersonResponse
+import com.zap.model.{AddressId, PersonId}
 import zio.query.{TaskQuery, UQuery}
 
 object Schema:
-  case class Address(id: Int, street: String)
-  case class Person(
-      name:    String,
-      id:      Int,
-      address: UQuery[Option[Address]],
-    )
+  case class Address(id: AddressId, street: String)
+  case class Person(name: String, id: PersonId, address: UQuery[Option[Address]])
   case class PersonResponse(persons: List[Person])
 
 object Operations:

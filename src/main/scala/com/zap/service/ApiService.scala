@@ -26,8 +26,8 @@ case class ApiServiceLive(personDataSource: PersonDataSource, addressDataSource:
 
     val getAddress = (id: AddressId) =>
       ZQuery.fromRequest(GetAddress(id))(addressDataSource.addressDataSource)
-        .map(_.map(addressRow => Address(AddressId.unwrap(addressRow.id), addressRow.street)))
+        .map(_.map(addressRow => Address(addressRow.id, addressRow.street)))
 
     personsQuery
-      .map(_.map(row => Person(row.name, PersonId.unwrap(row.id), getAddress(row.addressId))))
+      .map(_.map(row => Person(row.name, row.id, getAddress(row.addressId))))
       .map(PersonResponse(_))

@@ -29,7 +29,6 @@ object PersonDataSource:
                 val result = personService.getPerson(request.id)
                 result.exit.map(e => resultMap.insert(request)(e))
               case batch =>
-                // get multiple users at once e.g. SELECT id, name FROM users WHERE id IN ($ids)
                 val result = personService.getPerson(batch.map(_.id))
 
                 val res = result.fold(
