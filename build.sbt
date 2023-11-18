@@ -21,7 +21,11 @@ lazy val root = (project in file("."))
       "dev.zio"                     %% "zio-config"                        % "4.0.0-RC16",
       "dev.zio"                     %% "zio-config-magnolia"               % "4.0.0-RC16",
       "dev.zio"                     %% "zio-logging"                       % "2.1.15",
-      "dev.zio"                     %% "zio-logging-slf4j"                 % "2.1.15",
+      "dev.zio"                     %% "zio-logging-slf4j"                 % "2.1.15", // Sketch
+      "org.slf4j"                    % "slf4j-api"                         % "1.7.32", // Sketch
+      "org.apache.logging.log4j"     % "log4j-slf4j-impl"                  % "2.14.1", // Sketch
+      "org.apache.logging.log4j"     % "log4j-core"                        % "2.14.1", // Sketch
+      "org.apache.logging.log4j"     % "log4j-api"                         % "2.14.1", // Sketch
       "dev.zio"                     %% "zio-metrics-connectors"            % "2.2.1",
       "dev.zio"                     %% "zio-metrics-connectors-prometheus" % "2.2.1",
       "dev.zio"                     %% "zio-test"                          % "2.0.19" % Test,

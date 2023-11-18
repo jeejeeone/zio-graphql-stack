@@ -12,6 +12,7 @@ import zio.*
 object App extends ZIOAppDefault:
   override def run =
     (for
+      _                <- ZIO.logInfo("Start")
       httpServerConfig <- ZIO.config[HttpServerConfig](httpServerConfig)
       graphQlApi       <- ZIO.service[GraphQLApi]
       _ <- graphQlApi.api.runServer(
