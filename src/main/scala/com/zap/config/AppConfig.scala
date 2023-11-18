@@ -8,5 +8,5 @@ object AppConfig:
   case class ClickHouseConfig(chJdbcUrl: String, chUser: String, chPassword: String)
   case class HttpServerConfig(httpPort: Int)
 
-  val clickHouseConfig: Config[ClickHouseConfig] = deriveConfig[ClickHouseConfig].mapKey(toSnakeCase)
-  val serverConfig:     Config[HttpServerConfig] = deriveConfig[HttpServerConfig].mapKey(toSnakeCase)
+  val clickHouseConfig: Config[ClickHouseConfig] = deriveConfig[ClickHouseConfig].toSnakeCase
+  val serverConfig:     Config[HttpServerConfig] = deriveConfig[HttpServerConfig].toSnakeCase
