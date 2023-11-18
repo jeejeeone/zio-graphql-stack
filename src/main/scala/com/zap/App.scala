@@ -5,7 +5,7 @@ import com.zap.App.Environment
 import com.zap.database.ClickHouseDatabase
 import com.zap.database.service.{AddressService, PersonService}
 import com.zap.graphql.GraphQLApi
-import com.zap.graphql.queries.PersonQuery
+import com.zap.graphql.queries.PersonGraphQL
 import com.zap.model.AddressId
 import com.zap.zquery.{AddressDataSource, PersonDataSource}
 import zio.*
@@ -19,7 +19,7 @@ object App extends ZIOAppDefault:
         graphiqlPath = Some("/graphiql"),
       )
     .provide(
-      PersonQuery.live,
+      PersonGraphQL.live,
       PersonService.live,
       AddressService.live,
       GraphQLApi.live,

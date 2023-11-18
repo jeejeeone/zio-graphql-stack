@@ -9,10 +9,10 @@ import com.zap.zquery.{AddressDataSource, PersonDataSource}
 import zio.query.{TaskQuery, UQuery, ZQuery}
 import zio.{URLayer, ZIO, ZLayer}
 
-trait PersonQuery:
-  def persons(): TaskQuery[PersonResponse]
+trait PersonGraphQL:
+  def personsQuery(): TaskQuery[PersonResponse]
 
-object PersonQuery:
+object PersonGraphQL:
   val live: URLayer[AddressDataSource & PersonDataSource, PersonQueryLive] = ZLayer:
     for
       personDataSource  <- ZIO.service[PersonDataSource]
@@ -20,8 +20,8 @@ object PersonQuery:
     yield PersonQueryLive(personDataSource, addressDataSource)
 
 case class PersonQueryLive(personDataSource: PersonDataSource, addressDataSource: AddressDataSource)
-    extends PersonQuery:
-  override def persons(): TaskQuery[PersonResponse] =
+    extends PersonGraphQL:
+  override def personsQuery(): TaskQuery[PersonResponse] =
     val personsQuery: TaskQuery[List[PersonRow]] =
       ZQuery.fromRequest(GetAllPersons())(personDataSource.allPersonsDataSource)
 
