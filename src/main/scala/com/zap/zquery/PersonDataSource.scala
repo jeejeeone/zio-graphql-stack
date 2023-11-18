@@ -26,12 +26,9 @@ object PersonDataSource:
             val resultMap = CompletedRequestMap.empty
             requests.toList match
               case request :: Nil =>
-                val result = personService.getPerson(request.id)
-                result.exit.map(e => resultMap.insert(request)(e))
+                personService.getPerson(request.id).exit.map(e => resultMap.insert(request)(e))
               case batch =>
-                val result = personService.getPerson(batch.map(_.id))
-
-                val res = result.fold(
+                personService.getPerson(batch.map(_.id)).fold(
                   err =>
                     requests.foldLeft(resultMap) { case (map, req) =>
                       map.insert(req)(Exit.fail(err))
@@ -41,8 +38,6 @@ object PersonDataSource:
                       map.insert(GetPerson(person.id))(Exit.succeed(Some(person)))
                     },
                 )
-
-                res
 
         override lazy val allPersonsDataSource =
           DataSource.fromFunctionZIO[Any, Throwable, GetAllPersons, List[PersonRow]]("AllPersonsDataSource"): r =>

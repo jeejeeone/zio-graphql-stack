@@ -24,12 +24,9 @@ object AddressDataSource:
             val resultMap = CompletedRequestMap.empty
             requests.toList match
               case request :: Nil =>
-                val result = addressService.getAddress(request.id)
-                result.exit.map(e => resultMap.insert(request)(e))
+                addressService.getAddress(request.id).exit.map(e => resultMap.insert(request)(e))
               case batch =>
-                val result = addressService.getAddress(batch.map(_.id))
-
-                val res = result.fold(
+                addressService.getAddress(batch.map(_.id)).fold(
                   err =>
                     requests.foldLeft(resultMap) { case (map, req) =>
                       map.insert(req)(Exit.fail(err))
@@ -39,5 +36,3 @@ object AddressDataSource:
                       map.insert(GetAddress(address.id))(Exit.succeed(Some(address)))
                     },
                 )
-
-                res

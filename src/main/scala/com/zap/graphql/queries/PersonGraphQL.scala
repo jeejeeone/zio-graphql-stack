@@ -27,8 +27,8 @@ case class PersonQueryLive(personDataSource: PersonDataSource, addressDataSource
 
     def getAddress(id: AddressId): UQuery[Option[Address]] =
       ZQuery.fromRequest(GetAddress(id))(addressDataSource.addressDataSource)
-        .map(_.map(addressRow => Address(addressRow.id, addressRow.street)))
+        .map(addressOption => addressOption.map(addressRow => Address(addressRow.id, addressRow.street)))
 
     personsQuery
-      .map(_.map(row => Person(row.name, row.id, getAddress(row.addressId))))
-      .map(PersonResponse(_))
+      .map(rows => rows.map(row => Person(row.name, row.id, getAddress(row.addressId))))
+      .map(PersonResponse.apply)
