@@ -1,4 +1,4 @@
-package com.zap.database
+package com.zap.database.queries
 
 import anorm.*
 import com.zap.database.model.{Address, Person, PersonWithAddress}

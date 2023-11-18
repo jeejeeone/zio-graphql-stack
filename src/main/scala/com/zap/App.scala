@@ -2,12 +2,12 @@ package com.zap
 
 import caliban.quick.*
 import com.zap.App.Environment
-import com.zap.database.{ClickHouseConnection, ClickHouseQuery}
+import com.zap.database.ClickHouseDatabase
+import com.zap.database.service.{AddressService, PersonService}
 import com.zap.graphql.GraphQLApi
 import com.zap.graphql.queries.PersonQuery
 import com.zap.model.AddressId
 import com.zap.repositories.{AddressDataSource, PersonDataSource}
-import com.zap.service.{AddressService, PersonService}
 import zio.*
 
 object App extends ZIOAppDefault:
@@ -25,6 +25,5 @@ object App extends ZIOAppDefault:
       GraphQLApi.live,
       AddressDataSource.live,
       PersonDataSource.live,
-      ClickHouseConnection.clickHouseConnection,
-      ClickHouseQuery.live,
+      ClickHouseDatabase.clickHouseDatabase,
     )

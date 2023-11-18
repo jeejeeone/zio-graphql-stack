@@ -6,8 +6,8 @@ import com.zap.config.AppConfig.ClickHouseConfig
 import io.github.gaelrenoux.tranzactio.anorm.Database
 import zio.{ZIO, ZLayer}
 
-object ClickHouseConnection:
-  val clickHouseConnection =
+object ClickHouseDatabase:
+  val clickHouseDatabase =
     (ZLayer:
       ZIO.config[ClickHouseConfig](AppConfig.clickHouseConfig).map: chConfig =>
         new ClickHouseDataSource(s"${chConfig.chJdbcUrl}?user=${chConfig.chUser}&password=${chConfig.chPassword}")

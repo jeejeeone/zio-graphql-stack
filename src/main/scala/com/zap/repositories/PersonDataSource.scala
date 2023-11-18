@@ -1,9 +1,9 @@
 package com.zap.repositories
 
 import com.zap.database.model.Person
+import com.zap.database.service.PersonService
 import com.zap.model.*
 import com.zap.repositories.PersonDataSource.{GetAllPersons, GetPerson}
-import com.zap.service.PersonService
 import zio.query.DataSource.Batched
 import zio.query.{CompletedRequestMap, DataSource, Request}
 import zio.{Exit, URLayer, ZIO, ZLayer}
