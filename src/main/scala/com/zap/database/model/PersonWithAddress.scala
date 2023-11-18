@@ -5,13 +5,16 @@ import anorm.SqlParser.*
 import com.clickhouse.data.value.UnsignedInteger
 import com.zap.model.{AddressId, PersonId}
 
+// Example for more complex type
+
 case class PersonWithAddress(id: PersonId, name: String, address: (AddressId, String))
 
 object PersonWithAddress:
   import ClickHouseTypes.*
   import Ids.*
 
-  implicit val addressTuple: Column[(AddressId, String)] = tuple[UnsignedInteger, String].map:
-    case (a, b) => (AddressId(a.intValue()), b)
+  given Column[(AddressId, String)] =
+    tuple[UnsignedInteger, String].map:
+      case (a, b) => (AddressId(a.intValue()), b)
 
   val personWithAddressParser = Macro.indexedParser[PersonWithAddress]

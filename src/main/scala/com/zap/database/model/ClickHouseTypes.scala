@@ -5,7 +5,7 @@ import anorm.SqlParser.*
 import com.clickhouse.data.value.{UnsignedByte, UnsignedInteger}
 
 object ClickHouseTypes:
-  implicit val columnUnsignedByte: Column[UnsignedByte] =
+  given Column[UnsignedByte] =
     Column.nonNull { (value, meta) =>
       val MetaDataItem(qualified, nullable, clazz) = meta
       value match
@@ -15,7 +15,7 @@ object ClickHouseTypes:
           ))
     }
 
-  implicit val columnUnsignedInteger: Column[UnsignedInteger] =
+  given Column[UnsignedInteger] =
     Column.nonNull { (value, meta) =>
       val MetaDataItem(qualified, nullable, clazz) = meta
       value match

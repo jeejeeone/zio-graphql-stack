@@ -18,12 +18,3 @@ object PersonSqlQuery:
 
   def getPersons(ids: List[PersonId]) = tzio: c =>
     SQL(s"SELECT * FROM person WHERE id in [${ids.mkString(",")}]").as(Person.personParser.*)(c)
-
-  def getAddresses = tzio: c =>
-    SQL("SELECT * FROM address").as(Address.addressParser.*)(c)
-
-  def getAddresses(ids: List[AddressId]) = tzio: c =>
-    SQL(s"SELECT * FROM address WHERE id in [${ids.mkString(",")}]").as(Address.addressParser.*)(c)
-
-  def getAddresses(id: AddressId) = tzio: c =>
-    SQL(s"SELECT * FROM address WHERE id = $id").as(Address.addressParser.singleOpt)(c)
