@@ -15,7 +15,7 @@ trait ApiService:
 object ApiService:
   val live: URLayer[AddressDataSource & PersonDataSource, ApiServiceLive] = ZLayer:
     for
-      personDataSource <- ZIO.service[PersonDataSource]
+      personDataSource  <- ZIO.service[PersonDataSource]
       addressDataSource <- ZIO.service[AddressDataSource]
     yield ApiServiceLive(personDataSource, addressDataSource)
 

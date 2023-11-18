@@ -6,7 +6,7 @@ import com.zap.repositories.PersonData.AddressRow
 import zio.{Task, ZIO, ZLayer}
 
 trait AddressService:
-  def getAddress(id: AddressId): Task[Option[AddressRow]]
+  def getAddress(id:  AddressId):       Task[Option[AddressRow]]
   def getAddress(ids: List[AddressId]): Task[List[AddressRow]]
 
 object AddressService:

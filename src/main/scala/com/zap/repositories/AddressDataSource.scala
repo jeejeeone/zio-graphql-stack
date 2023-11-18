@@ -19,8 +19,8 @@ object AddressDataSource:
       for
         addressService <- ZIO.service[AddressService]
       yield new AddressDataSource:
-        override lazy val addressDataSource: UDataSource[GetAddress] = Batched.make[Any, GetAddress]("AddressDataSource"):
-          requests =>
+        override lazy val addressDataSource: UDataSource[GetAddress] =
+          Batched.make[Any, GetAddress]("AddressDataSource"): requests =>
             val resultMap = CompletedRequestMap.empty
             requests.toList match
               case request :: Nil =>
@@ -34,9 +34,10 @@ object AddressDataSource:
                     requests.foldLeft(resultMap) { case (map, req) =>
                       map.insert(req)(Exit.fail(err))
                     },
-                  success => success.foldLeft(resultMap) { case (map, address) =>
-                    map.insert(GetAddress(address.id))(Exit.succeed(Some(address)))
-                  }
+                  success =>
+                    success.foldLeft(resultMap) { case (map, address) =>
+                      map.insert(GetAddress(address.id))(Exit.succeed(Some(address)))
+                    },
                 )
 
                 res

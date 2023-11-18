@@ -17,4 +17,3 @@ object GraphQLApi:
     for
       apiService <- ZIO.service[ApiService]
     yield GraphQLApi(apiService)
-

@@ -7,7 +7,7 @@ import zio.{Task, ZIO, ZLayer}
 
 trait PersonService:
   def getPersons(): Task[List[PersonRow]]
-  def getPerson(id: PersonId): Task[Option[PersonRow]]
+  def getPerson(id:  PersonId):       Task[Option[PersonRow]]
   def getPerson(ids: List[PersonId]): Task[List[PersonRow]]
 
 object PersonService:
