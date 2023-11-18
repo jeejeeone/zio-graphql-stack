@@ -2,10 +2,10 @@ package com.zap.database.parser
 
 import anorm.*
 import anorm.SqlParser.*
-import com.clickhouse.data.value.UnsignedByte
+import com.clickhouse.data.value.{UnsignedByte, UnsignedInteger}
 
 object ClickHouseTypes:
-  implicit val columnToUnsignedByte: Column[UnsignedByte] =
+  implicit val columnUnsignedByte: Column[UnsignedByte] =
     Column.nonNull { (value, meta) =>
       val MetaDataItem(qualified, nullable, clazz) = meta
       value match
@@ -13,6 +13,27 @@ object ClickHouseTypes:
         case _ => Left(TypeDoesNotMatch(
             s"Cannot convert $value: ${value.asInstanceOf[AnyRef].getClass} to Unsigned for column $qualified"
           ))
+    }
+
+    implicit val columnUnsignedByte: Column[UnsignedInteger] =
+      Column.nonNull { (value, meta) =>
+        val MetaDataItem(qualified, nullable, clazz) = meta
+        value match
+          case v: UnsignedInteger => Right(v)
+          case _ => Left(TypeDoesNotMatch(
+              s"Cannot convert $value: ${value.asInstanceOf[AnyRef].getClass} to Unsigned for column $qualified"
+            ))
+      }
+
+  def tuple[A, B] =
+    Column.nonNull { (value, meta) =>
+      val MetaDataItem(qualified, nullable, clazz) = meta
+      value match
+        case array: java.util.List[?] =>
+          val value = (array.get(0).asInstanceOf[A], array.get(1).asInstanceOf[B])
+          Right(value)
+        case _ =>
+          Left(TypeDoesNotMatch(s"Cannot convert $value: ${value.asInstanceOf[AnyRef].getClass} for column $qualified"))
     }
 
   def unsignedByte(name: String): RowParser[UnsignedByte] = get[UnsignedByte](name)
