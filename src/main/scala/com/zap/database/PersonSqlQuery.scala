@@ -7,4 +7,4 @@ import io.github.gaelrenoux.tranzactio.anorm.*
 
 object PersonSqlQuery:
   val getPersons = tzio: c =>
-    SQL("SELECT -1").as(SqlParser.int(1).single)(c)
+    SQL("SELECT * FROM person_address_tupled").as(SqlParser.int(1).single)(c)
