@@ -1,4 +1,4 @@
-package com.zap.database.parser
+package com.zap.database.model
 
 import anorm.*
 import anorm.SqlParser.*
@@ -15,15 +15,15 @@ object ClickHouseTypes:
           ))
     }
 
-    implicit val columnUnsignedByte: Column[UnsignedInteger] =
-      Column.nonNull { (value, meta) =>
-        val MetaDataItem(qualified, nullable, clazz) = meta
-        value match
-          case v: UnsignedInteger => Right(v)
-          case _ => Left(TypeDoesNotMatch(
-              s"Cannot convert $value: ${value.asInstanceOf[AnyRef].getClass} to Unsigned for column $qualified"
-            ))
-      }
+  implicit val columnUnsignedInteger: Column[UnsignedInteger] =
+    Column.nonNull { (value, meta) =>
+      val MetaDataItem(qualified, nullable, clazz) = meta
+      value match
+        case v: UnsignedInteger => Right(v)
+        case _ => Left(TypeDoesNotMatch(
+            s"Cannot convert $value: ${value.asInstanceOf[AnyRef].getClass} to Unsigned for column $qualified"
+          ))
+    }
 
   def tuple[A, B] =
     Column.nonNull { (value, meta) =>

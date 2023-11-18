@@ -1,25 +1,22 @@
 package com.zap.service
 
+import com.zap.database.ClickHouseQuery
+import com.zap.database.model.Person
 import com.zap.model.PersonId
-import com.zap.repositories.PersonData
-import com.zap.repositories.PersonData.PersonRow
-import zio.{Task, ZIO, ZLayer}
+import zio.{Task, URLayer, ZIO, ZLayer}
 
 trait PersonService:
-  def getPersons(): Task[List[PersonRow]]
-  def getPerson(id:  PersonId):       Task[Option[PersonRow]]
-  def getPerson(ids: List[PersonId]): Task[List[PersonRow]]
+  def getPersons(): Task[List[Person]]
+  def getPerson(id:  PersonId):       Task[Option[Person]]
+  def getPerson(ids: List[PersonId]): Task[List[Person]]
 
 object PersonService:
-  val live = ZLayer.succeed(PersonServiceLive())
+  val live: URLayer[ClickHouseQuery, PersonService] = ZLayer.derive[PersonServiceLive]
 
-case class PersonServiceLive() extends PersonService:
-  override def getPersons(): Task[List[PersonRow]] =
-    ZIO.succeed(PersonData.persons)
-  override def getPerson(id: PersonId): Task[Option[PersonRow]] =
-    ZIO.succeed(PersonData.persons.find(p => p.id == id))
-  override def getPerson(ids: List[PersonId]): Task[List[PersonRow]] =
-    ZIO.succeed(
-      PersonData.persons.collect:
-        case p if ids.contains(p.id) => p
-    )
+case class PersonServiceLive(clickHouseQuery: ClickHouseQuery) extends PersonService:
+  override def getPersons(): Task[List[Person]] =
+    clickHouseQuery.persons()
+  override def getPerson(id: PersonId): Task[Option[Person]] =
+    clickHouseQuery.persons(id)
+  override def getPerson(ids: List[PersonId]): Task[List[Person]] =
+    clickHouseQuery.persons(ids)

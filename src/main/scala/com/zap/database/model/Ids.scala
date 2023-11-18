@@ -1,4 +1,4 @@
-package com.zap.database.parser
+package com.zap.database.model
 
 import anorm.*
 import anorm.SqlParser.*

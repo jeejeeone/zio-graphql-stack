@@ -1,22 +1,20 @@
 package com.zap.service
 
+import com.zap.database.ClickHouseQuery
+import com.zap.database.model.Address
 import com.zap.model.AddressId
-import com.zap.repositories.PersonData
-import com.zap.repositories.PersonData.AddressRow
-import zio.{Task, ZIO, ZLayer}
+import zio.{Task, URLayer, ZIO, ZLayer}
 
 trait AddressService:
-  def getAddress(id:  AddressId):       Task[Option[AddressRow]]
-  def getAddress(ids: List[AddressId]): Task[List[AddressRow]]
+  def getAddress(id:  AddressId):       Task[Option[Address]]
+  def getAddress(ids: List[AddressId]): Task[List[Address]]
 
 object AddressService:
-  val live = ZLayer.succeed(AddressServiceLive())
+  val live: URLayer[ClickHouseQuery, AddressService] = ZLayer.derive[AddressServiceLive]
 
-case class AddressServiceLive() extends AddressService:
-  override def getAddress(id: AddressId): Task[Option[AddressRow]] =
-    ZIO.succeed(PersonData.addresses.find(a => a.id == id))
-  override def getAddress(ids: List[AddressId]): Task[List[AddressRow]] =
-    ZIO.succeed(
-      PersonData.addresses.collect:
-        case a if ids.contains(a.id) => a
-    )
+case class AddressServiceLive(clickHouseQuery: ClickHouseQuery) extends AddressService:
+  override def getAddress(id: AddressId): Task[Option[Address]] =
+    clickHouseQuery.addresses(id)
+
+  override def getAddress(ids: List[AddressId]): Task[List[Address]] =
+    clickHouseQuery.addresses(ids)

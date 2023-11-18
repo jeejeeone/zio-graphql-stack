@@ -1,8 +1,8 @@
 package com.zap.repositories
 
+import com.zap.database.model.Address
 import com.zap.model.AddressId
 import com.zap.repositories.AddressDataSource.GetAddress
-import com.zap.repositories.PersonData.AddressRow
 import com.zap.service.AddressService
 import zio.query.DataSource.Batched
 import zio.query.{CompletedRequestMap, DataSource, Request}
@@ -12,7 +12,7 @@ trait AddressDataSource:
   def addressDataSource: UDataSource[GetAddress]
 
 object AddressDataSource:
-  case class GetAddress(id: AddressId) extends Request[Nothing, Option[AddressRow]]
+  case class GetAddress(id: AddressId) extends Request[Nothing, Option[Address]]
 
   val live: URLayer[AddressService, AddressDataSource] =
     ZLayer:
