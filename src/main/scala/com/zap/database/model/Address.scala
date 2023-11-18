@@ -1,7 +1,7 @@
 package com.zap.database.model
 
 import anorm.Macro
-import com.zap.model.{AddressId, PersonId}
+import com.zap.model.AddressId
 
 case class Address(id: AddressId, street: String)
 

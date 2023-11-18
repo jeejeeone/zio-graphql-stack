@@ -23,6 +23,7 @@ Stack:
 - zquery (n+1 problem)
 - tranzactio with anorm (zio wrapper for anorm)
 - anorm (Query ClickHouse with nice decoding)
+- sbt-tpolecat for scalac configuration
 
 # Run locally
 

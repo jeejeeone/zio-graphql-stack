@@ -1,8 +1,8 @@
 package com.zap.database.queries
 
 import anorm.*
-import com.zap.database.model.{Address, Person, PersonWithAddress}
-import com.zap.model.{AddressId, PersonId}
+import com.zap.database.model.{Person, PersonWithAddress}
+import com.zap.model.PersonId
 import io.github.gaelrenoux.tranzactio.*
 import io.github.gaelrenoux.tranzactio.anorm.*
 
