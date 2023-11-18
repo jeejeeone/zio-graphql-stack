@@ -16,6 +16,7 @@ trait ClickHouseQuery:
   def persons(ids:   List[PersonId]):  Task[List[Person]]
   def addresses(ids: List[AddressId]): Task[List[Address]]
 
+// TODO: Remove me
 object ClickHouseQuery:
   val live =
     ZLayer:
