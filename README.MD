@@ -23,3 +23,17 @@ Stack:
 - zquery (n+1 problem)
 - tranzactio with anorm (zio wrapper for anorm)
 - anorm (Query ClickHouse with nice decoding)
+
+# Run locally
+
+- Start ch docker container `(cd docker && docker-compose start)`
+- Before first run init test data (do it once) `chmod +x docker/insert-ch-data.sh && docker/insert-ch-data.sh`
+- Run `sbt run`
+
+Example request:
+
+```
+curl --location 'http://localhost:8080/api/graphql' \
+--header 'Content-Type: application/json' \
+--data '{"query":"query {\n    persons {\n        persons {\n            name\n            address {\n                street\n            }\n        }\n    }\n}","variables":{}}'
+```

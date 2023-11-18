@@ -1,0 +1,22 @@
+schema {
+  query: Queries
+}
+
+type Address {
+  id: Int!
+  street: String!
+}
+
+type Person {
+  name: String!
+  id: Int!
+  address: Address
+}
+
+type PersonResponse {
+  persons: [Person!]!
+}
+
+type Queries {
+  persons: PersonResponse
+}

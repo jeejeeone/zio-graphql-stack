@@ -5,8 +5,12 @@ import zio.Config
 import zio.config.magnolia.{deriveConfig, name}
 
 object AppConfig:
-  case class ClickHouseConfig(chJdbcUrl: String, chUser: String, chPassword: String)
-  case class HttpServerConfig(httpPort: Int)
+  case class ClickHouseConfig(
+      chJdbcUrl:  String = "jdbc:clickhouse://localhost:8123/test",
+      chUser:     String = "test",
+      chPassword: String = "test",
+    )
+  case class HttpServerConfig(httpPort: Int = 8080)
 
   val clickHouseConfig: Config[ClickHouseConfig] = deriveConfig[ClickHouseConfig].toSnakeCase
-  val serverConfig:     Config[HttpServerConfig] = deriveConfig[HttpServerConfig].toSnakeCase
+  val httpServerConfig: Config[HttpServerConfig] = deriveConfig[HttpServerConfig].toSnakeCase
