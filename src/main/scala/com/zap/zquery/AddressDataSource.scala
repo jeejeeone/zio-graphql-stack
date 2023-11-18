@@ -1,6 +1,6 @@
 package com.zap.zquery
 
-import com.zap.database.model.Address
+import com.zap.database.model.AddressRow
 import com.zap.database.service.AddressService
 import com.zap.model.AddressId
 import com.zap.zquery.AddressDataSource.GetAddress
@@ -12,7 +12,7 @@ trait AddressDataSource:
   def addressDataSource: UDataSource[GetAddress]
 
 object AddressDataSource:
-  case class GetAddress(id: AddressId) extends Request[Nothing, Option[Address]]
+  case class GetAddress(id: AddressId) extends Request[Nothing, Option[AddressRow]]
 
   val live: URLayer[AddressService, AddressDataSource] =
     ZLayer:

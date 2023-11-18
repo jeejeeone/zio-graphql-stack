@@ -7,9 +7,9 @@ import com.zap.model.{AddressId, PersonId}
 
 // Example for more complex type
 
-case class PersonWithAddress(id: PersonId, name: String, address: (AddressId, String))
+case class PersonWithAddressRow(id: PersonId, name: String, address: (AddressId, String))
 
-object PersonWithAddress:
+object PersonWithAddressRow:
   import ClickHouseTypes.*
   import Ids.*
 
@@ -17,4 +17,4 @@ object PersonWithAddress:
     tuple[UnsignedInteger, String].map:
       case (a, b) => (AddressId(a.intValue()), b)
 
-  val personWithAddressParser = Macro.indexedParser[PersonWithAddress]
+  val personWithAddressParser = Macro.indexedParser[PersonWithAddressRow]

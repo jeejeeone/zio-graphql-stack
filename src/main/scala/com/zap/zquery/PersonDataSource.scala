@@ -1,6 +1,6 @@
 package com.zap.zquery
 
-import com.zap.database.model.Person
+import com.zap.database.model.PersonRow
 import com.zap.database.service.PersonService
 import com.zap.model.*
 import com.zap.zquery.PersonDataSource.{GetAllPersons, GetPerson}
@@ -13,8 +13,8 @@ trait PersonDataSource:
   def allPersonsDataSource: UDataSource[GetAllPersons]
 
 object PersonDataSource:
-  case class GetPerson(id: PersonId) extends Request[Nothing, Option[Person]]
-  case class GetAllPersons()         extends Request[Nothing, List[Person]]
+  case class GetPerson(id: PersonId) extends Request[Nothing, Option[PersonRow]]
+  case class GetAllPersons()         extends Request[Nothing, List[PersonRow]]
 
   val live: URLayer[PersonService, PersonDataSource] =
     ZLayer:
@@ -45,5 +45,5 @@ object PersonDataSource:
                 res
 
         override lazy val allPersonsDataSource =
-          DataSource.fromFunctionZIO[Any, Throwable, GetAllPersons, List[Person]]("AllPersonsDataSource"): r =>
+          DataSource.fromFunctionZIO[Any, Throwable, GetAllPersons, List[PersonRow]]("AllPersonsDataSource"): r =>
             personService.getPersons()

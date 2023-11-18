@@ -1,6 +1,6 @@
 package com.zap.graphql.queries
 
-import com.zap.database.model.Person as PersonRow
+import com.zap.database.model.PersonRow
 import com.zap.graphql.Schema.{Address, Person, PersonResponse}
 import com.zap.model.AddressId
 import com.zap.zquery.AddressDataSource.GetAddress
@@ -25,7 +25,7 @@ case class PersonQueryLive(personDataSource: PersonDataSource, addressDataSource
     val personsQuery: TaskQuery[List[PersonRow]] =
       ZQuery.fromRequest(GetAllPersons())(personDataSource.allPersonsDataSource)
 
-    val getAddress: AddressId => UQuery[Option[Address]] = (id: AddressId) =>
+    def getAddress(id: AddressId): UQuery[Option[Address]] =
       ZQuery.fromRequest(GetAddress(id))(addressDataSource.addressDataSource)
         .map(_.map(addressRow => Address(addressRow.id, addressRow.street)))
 
