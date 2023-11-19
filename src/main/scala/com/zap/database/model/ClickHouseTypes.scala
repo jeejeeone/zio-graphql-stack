@@ -8,6 +8,6 @@ object ClickHouseTypes:
   given Column[UnsignedByte]    = column[UnsignedByte]
   given Column[UnsignedInteger] = column[UnsignedInteger]
 
-  def tuple[A, B] =
-    columnTransform[java.util.List[?], (A, B)]: list =>
+  def tuple[A, B]: Column[(A, B)] =
+    column[java.util.List[?]].map: list =>
       (list.get(0).asInstanceOf[A], list.get(1).asInstanceOf[B])

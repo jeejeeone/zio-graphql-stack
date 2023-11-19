@@ -7,11 +7,11 @@ import io.github.gaelrenoux.tranzactio.*
 import io.github.gaelrenoux.tranzactio.anorm.*
 
 object AddressSqlQuery:
-  def addressQuery = tzio: c =>
+  def addressQuery: TranzactIO[List[AddressRow]] = tzio: c =>
     SQL("SELECT * FROM address").as(AddressRow.addressParser.*)(c)
 
-  def addressQuery(ids: List[AddressId]) = tzio: c =>
+  def addressQuery(ids: List[AddressId]): TranzactIO[List[AddressRow]] = tzio: c =>
     SQL(s"SELECT * FROM address WHERE id in [${ids.mkString(",")}]").as(AddressRow.addressParser.*)(c)
 
-  def addressQuery(id: AddressId) = tzio: c =>
+  def addressQuery(id: AddressId): TranzactIO[Option[AddressRow]] = tzio: c =>
     SQL(s"SELECT * FROM address WHERE id = $id").as(AddressRow.addressParser.singleOpt)(c)

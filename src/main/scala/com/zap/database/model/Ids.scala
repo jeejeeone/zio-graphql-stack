@@ -6,10 +6,10 @@ import com.clickhouse.data.value.UnsignedInteger
 import com.zap.model.{AddressId, PersonId}
 
 object Ids:
-  given Column[PersonId] = columnTransform[UnsignedInteger, Int, PersonId]:
+  given Column[PersonId] = columnAOrB[UnsignedInteger, Int].map:
     case v: UnsignedInteger => PersonId(v.intValue())
     case v: Int             => PersonId(v)
 
-  given Column[AddressId] = columnTransform[UnsignedInteger, Int, AddressId]:
+  given Column[AddressId] = columnAOrB[UnsignedInteger, Int].map:
     case v: UnsignedInteger => AddressId(v.intValue())
     case v: Int             => AddressId(v)
