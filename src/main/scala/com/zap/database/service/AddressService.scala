@@ -13,9 +13,9 @@ trait AddressService:
 object AddressService:
   val live: URLayer[Database.Service, AddressService] = ZLayer.derive[AddressServiceLive]
 
-case class AddressServiceLive(chDatabase: Database.Service) extends AddressService:
+case class AddressServiceLive(database: Database.Service) extends AddressService:
   override def getAddress(id: AddressId): Task[Option[AddressRow]] =
-    chDatabase.autoCommitOrWiden(addressQuery(id))
+    database.autoCommitOrWiden(addressQuery(id))
 
   override def getAddress(ids: List[AddressId]): Task[List[AddressRow]] =
-    chDatabase.autoCommitOrWiden(addressQuery(ids))
+    database.autoCommitOrWiden(addressQuery(ids))

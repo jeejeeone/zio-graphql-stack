@@ -10,7 +10,5 @@ object AppConfig:
       chUser:     String = "test",
       chPassword: String = "test",
     )
-  case class HttpServerConfig(httpPort: Int = 8080)
 
   val clickHouseConfig: Config[ClickHouseConfig] = deriveConfig[ClickHouseConfig].toSnakeCase
-  val httpServerConfig: Config[HttpServerConfig] = deriveConfig[HttpServerConfig].toSnakeCase

@@ -14,12 +14,12 @@ trait PersonService:
 object PersonService:
   val live: URLayer[Database.Service, PersonService] = ZLayer.derive[PersonServiceLive]
 
-case class PersonServiceLive(chDatabase: Database.Service) extends PersonService:
+case class PersonServiceLive(database: Database.Service) extends PersonService:
   override def getPersons(): Task[List[PersonRow]] =
-    chDatabase.autoCommitOrWiden(personQuery)
+    database.autoCommitOrWiden(personQuery)
 
   override def getPerson(id: PersonId): Task[Option[PersonRow]] =
-    chDatabase.autoCommitOrWiden(personQuery(id))
+    database.autoCommitOrWiden(personQuery(id))
 
   override def getPerson(ids: List[PersonId]): Task[List[PersonRow]] =
-    chDatabase.autoCommitOrWiden(personQuery(ids))
+    database.autoCommitOrWiden(personQuery(ids))
