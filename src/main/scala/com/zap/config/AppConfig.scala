@@ -11,4 +11,9 @@ object AppConfig:
       chPassword: String = "test",
     )
 
+  case class MetricsConfig(
+      metricsPollIntervalSeconds: Int = 5
+    )
+
   val clickHouseConfig: Config[ClickHouseConfig] = deriveConfig[ClickHouseConfig].toSnakeCase
+  val metricsConfig:    Config[MetricsConfig]    = deriveConfig[MetricsConfig].toSnakeCase

@@ -5,6 +5,7 @@ import com.zap.database.service.{AddressService, PersonService}
 import com.zap.graphql.GraphQLApi
 import com.zap.graphql.queries.PersonGraphQL
 import com.zap.http.HttpApp
+import com.zap.observability.metrics.MetricsLayers
 import com.zap.zquery.{AddressDataSource, PersonDataSource}
 import zio.*
 
@@ -25,4 +26,5 @@ object App extends ZIOAppDefault:
         AddressDataSource.live,
         PersonDataSource.live,
         ClickHouseDatabase.clickHouseDatabase,
+        MetricsLayers.metricsLayers,
       )
