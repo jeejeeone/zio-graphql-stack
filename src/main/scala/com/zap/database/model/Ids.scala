@@ -6,20 +6,10 @@ import com.clickhouse.data.value.UnsignedInteger
 import com.zap.model.{AddressId, PersonId}
 
 object Ids:
-  given Column[PersonId] =
-    Column.nonNull { (value, meta) =>
-      val MetaDataItem(qualified, nullable, clazz) = meta
-      value match
-        case v: UnsignedInteger => Right(PersonId(v.intValue()))
-        case v: Int             => Right(PersonId(v))
-        case _ => defaultDoesNotMatchLeft(value, "PersonId", qualified)
-    }
+  given Column[PersonId] = columnTransform[UnsignedInteger, Int, PersonId]:
+    case v: UnsignedInteger => PersonId(v.intValue())
+    case v: Int             => PersonId(v)
 
-  given Column[AddressId] =
-    Column.nonNull { (value, meta) =>
-      val MetaDataItem(qualified, nullable, clazz) = meta
-      value match
-        case v: UnsignedInteger => Right(AddressId(v.intValue()))
-        case v: Int             => Right(AddressId(v))
-        case _ => defaultDoesNotMatchLeft(value, "AddressId", qualified)
-    }
+  given Column[AddressId] = columnTransform[UnsignedInteger, Int, AddressId]:
+    case v: UnsignedInteger => AddressId(v.intValue())
+    case v: Int             => AddressId(v)
