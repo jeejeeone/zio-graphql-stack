@@ -35,5 +35,3 @@ object ClickHouseTypes:
         case _ =>
           Left(TypeDoesNotMatch(s"Cannot convert $value: ${value.asInstanceOf[AnyRef].getClass} for column $qualified"))
     }
-
-  def unsignedByte(name: String): RowParser[UnsignedByte] = get[UnsignedByte](name)

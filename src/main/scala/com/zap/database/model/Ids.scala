@@ -6,7 +6,7 @@ import com.clickhouse.data.value.{UnsignedByte, UnsignedInteger}
 import com.zap.model.{AddressId, PersonId}
 
 object Ids:
-  implicit val columnPersonId: Column[PersonId] =
+  given Column[PersonId] =
     Column.nonNull { (value, meta) =>
       val MetaDataItem(qualified, nullable, clazz) = meta
       value match
@@ -18,7 +18,7 @@ object Ids:
           ))
     }
 
-  implicit val columnAddressId: Column[AddressId] =
+  given Column[AddressId] =
     Column.nonNull { (value, meta) =>
       val MetaDataItem(qualified, nullable, clazz) = meta
       value match

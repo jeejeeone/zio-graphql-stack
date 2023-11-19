@@ -11,7 +11,7 @@ case class PersonWithAddressRow(id: PersonId, name: String, address: (AddressId,
 
 object PersonWithAddressRow:
   import ClickHouseTypes.*
-  import Ids.*
+  import Ids.given_Column_PersonId
 
   given Column[(AddressId, String)] =
     tuple[UnsignedInteger, String].map:

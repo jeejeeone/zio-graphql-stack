@@ -1,7 +1,7 @@
 package com.zap.database.service
 
 import com.zap.database.model.PersonRow
-import com.zap.database.queries.PersonSqlQuery
+import com.zap.database.queries.PersonSqlQuery.*
 import com.zap.model.PersonId
 import io.github.gaelrenoux.tranzactio.anorm.Database
 import zio.{Task, URLayer, ZIO, ZLayer}
@@ -16,10 +16,10 @@ object PersonService:
 
 case class PersonServiceLive(chDatabase: Database.Service) extends PersonService:
   override def getPersons(): Task[List[PersonRow]] =
-    chDatabase.autoCommitOrWiden(PersonSqlQuery.getPersons)
+    chDatabase.autoCommitOrWiden(personQuery)
 
   override def getPerson(id: PersonId): Task[Option[PersonRow]] =
-    chDatabase.autoCommitOrWiden(PersonSqlQuery.getPersons(id))
+    chDatabase.autoCommitOrWiden(personQuery(id))
 
   override def getPerson(ids: List[PersonId]): Task[List[PersonRow]] =
-    chDatabase.autoCommitOrWiden(PersonSqlQuery.getPersons(ids))
+    chDatabase.autoCommitOrWiden(personQuery(ids))

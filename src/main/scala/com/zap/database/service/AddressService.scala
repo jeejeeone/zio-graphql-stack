@@ -1,6 +1,6 @@
 package com.zap.database.service
 
-import com.zap.database.queries.AddressSqlQuery.getAddresses
+import com.zap.database.queries.AddressSqlQuery.addressQuery
 import com.zap.database.model.AddressRow
 import com.zap.model.AddressId
 import io.github.gaelrenoux.tranzactio.anorm.Database
@@ -15,7 +15,7 @@ object AddressService:
 
 case class AddressServiceLive(chDatabase: Database.Service) extends AddressService:
   override def getAddress(id: AddressId): Task[Option[AddressRow]] =
-    chDatabase.autoCommitOrWiden(getAddresses(id))
+    chDatabase.autoCommitOrWiden(addressQuery(id))
 
   override def getAddress(ids: List[AddressId]): Task[List[AddressRow]] =
-    chDatabase.autoCommitOrWiden(getAddresses(ids))
+    chDatabase.autoCommitOrWiden(addressQuery(ids))
