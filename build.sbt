@@ -1,7 +1,7 @@
 ThisBuild / scalaVersion     := "3.3.1"
 ThisBuild / version          := "0.1.0-SNAPSHOT"
-ThisBuild / organization     := "com.example"
-ThisBuild / organizationName := "example"
+ThisBuild / organization     := "com.zap"
+ThisBuild / organizationName := "zap"
 
 lazy val root = (project in file("."))
   .settings(
@@ -16,6 +16,7 @@ lazy val root = (project in file("."))
       "org.lz4"                      % "lz4-java"                          % "1.8.0",
       "com.github.ghostdogpr"       %% "caliban-zio-http"                  % "2.4.3",
       "com.github.ghostdogpr"       %% "caliban-quick"                     % "2.4.3",
+      "com.github.ghostdogpr"       %% "caliban-tracing"                   % "2.4.3",
       "com.softwaremill.sttp.tapir" %% "tapir-json-circe"                  % "1.2.11",
       "dev.zio"                     %% "zio-prelude"                       % "1.0.0-RC21",
       "dev.zio"                     %% "zio-config"                        % "4.0.0-RC16",
