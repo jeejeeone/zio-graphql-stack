@@ -25,6 +25,6 @@ SELECT
     p.name AS person_name,
     tuple(a.id, a.street) AS address
 FROM
-    person p
+    test.person p
         JOIN
-    address a ON p.address_id = a.id;
+    test.address a ON p.address_id = a.id;

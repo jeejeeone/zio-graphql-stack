@@ -8,10 +8,9 @@ import com.zap.http.HttpApp
 import com.zap.observability.metrics.MetricsLayers
 import com.zap.zquery.{AddressDataSource, PersonDataSource}
 import zio.*
+import zio.http.*
 
 object App extends ZIOAppDefault:
-  import zio.http.*
-
   override def run =
     (for
       _       <- ZIO.logInfo("Start")

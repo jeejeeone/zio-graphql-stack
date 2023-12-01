@@ -3,14 +3,15 @@
 PoC for a GraphQL microservice. Explore Scala 3, particularly braceless syntax.
 
 Following capabilities:
-- Federation support
-- Handle n+1 queries problem
-- Query ClickHouse
+- [x] Scala 3 (braceless)
+- [x] Federation support
+- [x] Handle n+1 queries problem
+- [x] Query ClickHouse
   - Custom decoders for CH datatypes
   - Automatic decoding to Scala types 
-- Distributed tracing
-- Maybe caching with Redis
-- Maybe GraalVM native image
+- [ ] Maybe distributed tracing
+- [ ] Maybe caching with Redis
+- [x] Maybe GraalVM native image
 
 Stack:
 

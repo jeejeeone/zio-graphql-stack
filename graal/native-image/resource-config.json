@@ -1,0 +1,11 @@
+{
+  "resources":{
+  "includes":[{
+    "pattern":"\\QMETA-INF/native/libnetty_transport_native_kqueue_x86_64.jnilib\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/com.clickhouse.client.ClickHouseClient\\E"
+  }, {
+    "pattern":"\\Qnet/jpountz/util/darwin/x86_64/liblz4-java.dylib\\E"
+  }]},
+  "bundles":[]
+}

@@ -1,0 +1,1024 @@
+[
+{
+  "name": "net.jpountz.lz4.LZ4JavaSafeSafeDecompressor",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true,
+  "allDeclaredMethods": true,
+  "allPublicMethods": true,
+  "allDeclaredFields": true,
+  "allPublicFields": true,
+  "allDeclaredClasses": true,
+  "allPermittedSubclasses": true,
+  "allPublicClasses": true,
+  "queryAllDeclaredConstructors": true,
+  "queryAllPublicConstructors": true,
+  "queryAllDeclaredMethods": true,
+  "queryAllPublicMethods": true
+},
+{
+  "name": "net.jpountz.lz4.LZ4JavaSafeFastDecompressor",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true,
+  "allDeclaredMethods": true,
+  "allPublicMethods": true,
+  "allDeclaredFields": true,
+  "allPublicFields": true,
+  "allDeclaredClasses": true,
+  "allPermittedSubclasses": true,
+  "allPublicClasses": true,
+  "queryAllDeclaredConstructors": true,
+  "queryAllPublicConstructors": true,
+  "queryAllDeclaredMethods": true,
+  "queryAllPublicMethods": true
+},
+{
+  "name": "net.jpountz.lz4.LZ4HCJavaSafeCompressor",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true,
+  "allDeclaredMethods": true,
+  "allPublicMethods": true,
+  "allDeclaredFields": true,
+  "allPublicFields": true,
+  "allDeclaredClasses": true,
+  "allPermittedSubclasses": true,
+  "allPublicClasses": true,
+  "queryAllDeclaredConstructors": true,
+  "queryAllPublicConstructors": true,
+  "queryAllDeclaredMethods": true,
+  "queryAllPublicMethods": true
+},
+{
+  "name": "net.jpountz.lz4.LZ4JavaSafeCompressor",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true,
+  "allDeclaredMethods": true,
+  "allPublicMethods": true,
+  "allDeclaredFields": true,
+  "allPublicFields": true,
+  "allDeclaredClasses": true,
+  "allPermittedSubclasses": true,
+  "allPublicClasses": true,
+  "queryAllDeclaredConstructors": true,
+  "queryAllPublicConstructors": true,
+  "queryAllDeclaredMethods": true,
+  "queryAllPublicMethods": true
+},
+{
+  "name":"[Ljava.lang.String;"
+},
+{
+  "name":"[Lscala.Tuple2;"
+},
+{
+  "name":"[Lzio.ZIO$EvaluationStep;"
+},
+{
+  "name":"[Lzio.http.Header$Accept$MediaTypeWithQFactor;"
+},
+{
+  "name":"[Lzio.metrics.MetricListener;"
+},
+{
+  "name":"anorm.Column$",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"anorm.Cursor$$anon$2",
+  "fields":[{"name":"0bitmap$2"}]
+},
+{
+  "name":"anorm.Cursor$$anon$3",
+  "fields":[{"name":"0bitmap$3"}]
+},
+{
+  "name":"anorm.Cursor$ResultRow",
+  "fields":[{"name":"0bitmap$4"}]
+},
+{
+  "name":"anorm.MetaData",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"anorm.SqlMappingError",
+  "fields":[{"name":"0bitmap$3"}]
+},
+{
+  "name":"anorm.SqlStatementParser$",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"anorm.StringToken",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"anorm.TokenGroup",
+  "fields":[{"name":"0bitmap$2"}]
+},
+{
+  "name":"anorm.TokenizedStatement$",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"anorm.package$",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"caliban.GraphQL$$anon$1",
+  "fields":[{"name":"introspectionRootSchema$lzy1"}]
+},
+{
+  "name":"caliban.GraphQL$$anon$3",
+  "fields":[{"name":"caliban$GraphQL$$cachedDocument$lzy1"}, {"name":"caliban$GraphQL$$cachedInterpreter$lzy1"}]
+},
+{
+  "name":"caliban.ResponseValue$ObjectValue",
+  "fields":[{"name":"hashCode$lzy1"}]
+},
+{
+  "name":"caliban.execution.Field",
+  "fields":[{"name":"fieldNames$lzy1"}, {"name":"locationInfo$lzy1"}, {"name":"toSelection$lzy1"}]
+},
+{
+  "name":"caliban.introspection.Introspector$",
+  "fields":[{"name":"__directiveSchema$lzy1"}, {"name":"inputValueSchema$lzy1"}, {"name":"typeSchema$lzy1"}]
+},
+{
+  "name":"caliban.introspection.adt.__Directive",
+  "fields":[{"name":"allArgs$lzy1"}]
+},
+{
+  "name":"caliban.introspection.adt.__Field",
+  "fields":[{"name":"_type$lzy1"}, {"name":"allArgs$lzy1"}]
+},
+{
+  "name":"caliban.introspection.adt.__InputValue",
+  "fields":[{"name":"_type$lzy1"}]
+},
+{
+  "name":"caliban.introspection.adt.__Type",
+  "fields":[{"name":"allEnumValues$lzy1"}, {"name":"allFields$lzy1"}, {"name":"allFieldsMap$lzy1"}, {"name":"allInputFields$lzy1"}, {"name":"innerType$lzy1"}, {"name":"list$lzy1"}, {"name":"nonNull$lzy1"}]
+},
+{
+  "name":"caliban.package$$anon$1",
+  "fields":[{"name":"caliban$GraphQL$$cachedDocument$lzy1"}, {"name":"caliban$GraphQL$$cachedInterpreter$lzy1"}]
+},
+{
+  "name":"caliban.parsing.SourceMapper$DefaultSourceMapper",
+  "fields":[{"name":"lineNumberLookup$lzy1"}]
+},
+{
+  "name":"caliban.parsing.adt.Document",
+  "fields":[{"name":"directiveDefinitions$lzy1"}, {"name":"enumTypeDefinitions$lzy1"}, {"name":"fragmentDefinitions$lzy1"}, {"name":"inputObjectTypeDefinitions$lzy1"}, {"name":"interfaceTypeDefinitions$lzy1"}, {"name":"isIntrospection$lzy1"}, {"name":"mutationDefinitions$lzy1"}, {"name":"objectTypeDefinitions$lzy1"}, {"name":"operationDefinitions$lzy1"}, {"name":"queryDefinitions$lzy1"}, {"name":"scalarTypeDefinitions$lzy1"}, {"name":"schemaDefinition$lzy1"}, {"name":"subscriptionDefinitions$lzy1"}, {"name":"typeDefinitions$lzy1"}, {"name":"unionTypeDefinitions$lzy1"}]
+},
+{
+  "name":"caliban.parsing.adt.Type$NamedType",
+  "fields":[{"name":"nullable$lzy1"}]
+},
+{
+  "name":"caliban.parsing.parsers.Parsers$",
+  "fields":[{"name":"whitespace$lzy1"}]
+},
+{
+  "name":"caliban.rendering.DocumentRenderer$",
+  "fields":[{"name":"__typeNameRenderer$lzy1"}, {"name":"defaultValueRenderer$lzy1"}, {"name":"descriptionRenderer$lzy1"}, {"name":"directiveDefinitionRenderer$lzy1"}, {"name":"directiveDefinitionsRenderer$lzy1"}, {"name":"directiveRenderer$lzy1"}, {"name":"directivesRenderer$lzy1"}, {"name":"documentRenderer$lzy1"}, {"name":"enumRenderer$lzy1"}, {"name":"enumValueDefinitionRenderer$lzy1"}, {"name":"fieldDefinitionRenderer$lzy1"}, {"name":"fieldDefinitionsRenderer$lzy1"}, {"name":"fragmentRenderer$lzy1"}, {"name":"inlineInputValueDefinitionRenderer$lzy1"}, {"name":"inlineInputValueDefinitionsRenderer$lzy1"}, {"name":"inputArgumentsRenderer$lzy1"}, {"name":"inputObjectTypeDefinition$lzy1"}, {"name":"inputValueDefinitionRenderer$lzy1"}, {"name":"interfaceTypeDefinitionRenderer$lzy1"}, {"name":"objectTypeDefinitionRenderer$lzy1"}, {"name":"operationDefinitionRenderer$lzy1"}, {"name":"operationTypeRenderer$lzy1"}, {"name":"scalarRenderer$lzy1"}, {"name":"schemaRenderer$lzy1"}, {"name":"selectionRenderer$lzy1"}, {"name":"selectionsRenderer$lzy1"}, {"name":"typeDefinitionRenderer$lzy1"}, {"name":"typeDefinitionsRenderer$lzy1"}, {"name":"typeRenderer$lzy1"}, {"name":"typesRenderer$lzy1"}, {"name":"unionRenderer$lzy1"}, {"name":"variableDefinition$lzy1"}, {"name":"variableDefinitionsRenderer$lzy1"}]
+},
+{
+  "name":"caliban.rendering.Renderer$",
+  "fields":[{"name":"empty$lzy1"}, {"name":"escapedString$lzy1"}, {"name":"newline$lzy1"}, {"name":"newlineOrComma$lzy1"}, {"name":"newlineOrEmpty$lzy1"}, {"name":"newlineOrSpace$lzy1"}, {"name":"spaceOrEmpty$lzy1"}, {"name":"string$lzy1"}]
+},
+{
+  "name":"caliban.schema.ArgBuilder$",
+  "fields":[{"name":"Auto$lzy2"}, {"name":"bigDecimal$lzy2"}, {"name":"bigInt$lzy2"}, {"name":"boolean$lzy2"}, {"name":"caliban$schema$ArgBuilderInstances$$TemporalDecoder$lzy2"}, {"name":"double$lzy2"}, {"name":"float$lzy2"}, {"name":"instant$lzy2"}, {"name":"instantEpoch$lzy2"}, {"name":"int$lzy2"}, {"name":"localDate$lzy2"}, {"name":"localDateTime$lzy2"}, {"name":"localTime$lzy2"}, {"name":"long$lzy2"}, {"name":"offsetDateTime$lzy2"}, {"name":"offsetTime$lzy2"}, {"name":"string$lzy2"}, {"name":"unit$lzy2"}, {"name":"upload$lzy2"}, {"name":"uuid$lzy2"}, {"name":"zonedDateTime$lzy2"}]
+},
+{
+  "name":"caliban.schema.ArgBuilder$auto$",
+  "fields":[{"name":"Auto$lzy1"}, {"name":"bigDecimal$lzy1"}, {"name":"bigInt$lzy1"}, {"name":"boolean$lzy1"}, {"name":"caliban$schema$ArgBuilderInstances$$TemporalDecoder$lzy1"}, {"name":"double$lzy1"}, {"name":"float$lzy1"}, {"name":"instant$lzy1"}, {"name":"instantEpoch$lzy1"}, {"name":"int$lzy1"}, {"name":"localDate$lzy1"}, {"name":"localDateTime$lzy1"}, {"name":"localTime$lzy1"}, {"name":"long$lzy1"}, {"name":"offsetDateTime$lzy1"}, {"name":"offsetTime$lzy1"}, {"name":"string$lzy1"}, {"name":"unit$lzy1"}, {"name":"upload$lzy1"}, {"name":"uuid$lzy1"}, {"name":"zonedDateTime$lzy1"}]
+},
+{
+  "name":"caliban.schema.CommonArgBuilderDerivation$$anon$3",
+  "fields":[{"name":"annotations$lzy1"}, {"name":"fields$lzy1"}]
+},
+{
+  "name":"caliban.schema.EnumValueSchema",
+  "fields":[{"name":"caliban$schema$Schema$$asInputType$lzy1"}, {"name":"caliban$schema$Schema$$asSubscriptionType$lzy1"}, {"name":"caliban$schema$Schema$$asType$lzy1"}]
+},
+{
+  "name":"caliban.schema.GenericSchema$$anon$13",
+  "fields":[{"name":"caliban$schema$Schema$$asInputType$lzy13"}, {"name":"caliban$schema$Schema$$asSubscriptionType$lzy13"}, {"name":"caliban$schema$Schema$$asType$lzy13"}, {"name":"inputType$lzy1"}]
+},
+{
+  "name":"caliban.schema.GenericSchema$$anon$17",
+  "fields":[{"name":"caliban$schema$Schema$$asInputType$lzy17"}, {"name":"caliban$schema$Schema$$asSubscriptionType$lzy17"}, {"name":"caliban$schema$Schema$$asType$lzy17"}]
+},
+{
+  "name":"caliban.schema.GenericSchema$$anon$18",
+  "fields":[{"name":"caliban$schema$Schema$$asInputType$lzy18"}, {"name":"caliban$schema$Schema$$asSubscriptionType$lzy18"}, {"name":"caliban$schema$Schema$$asType$lzy18"}]
+},
+{
+  "name":"caliban.schema.GenericSchema$$anon$3",
+  "fields":[{"name":"caliban$schema$Schema$$asInputType$lzy3"}, {"name":"caliban$schema$Schema$$asSubscriptionType$lzy3"}, {"name":"caliban$schema$Schema$$asType$lzy3"}]
+},
+{
+  "name":"caliban.schema.GenericSchema$$anon$6",
+  "fields":[{"name":"caliban$schema$Schema$$asInputType$lzy6"}, {"name":"caliban$schema$Schema$$asSubscriptionType$lzy6"}, {"name":"caliban$schema$Schema$$asType$lzy6"}]
+},
+{
+  "name":"caliban.schema.GenericSchema$$anon$7",
+  "fields":[{"name":"caliban$schema$Schema$$asInputType$lzy7"}, {"name":"caliban$schema$Schema$$asSubscriptionType$lzy7"}, {"name":"caliban$schema$Schema$$asType$lzy7"}]
+},
+{
+  "name":"caliban.schema.GenericSchema$$anon$8",
+  "fields":[{"name":"caliban$schema$Schema$$asInputType$lzy8"}, {"name":"caliban$schema$Schema$$asSubscriptionType$lzy8"}, {"name":"caliban$schema$Schema$$asType$lzy8"}]
+},
+{
+  "name":"caliban.schema.ObjectSchema",
+  "fields":[{"name":"caliban$schema$Schema$$asInputType$lzy1"}, {"name":"caliban$schema$Schema$$asSubscriptionType$lzy1"}, {"name":"caliban$schema$Schema$$asType$lzy1"}, {"name":"fields$lzy1"}]
+},
+{
+  "name":"caliban.schema.Schema$",
+  "fields":[{"name":"Auto$lzy1"}, {"name":"SemiAuto$lzy1"}, {"name":"auto$lzy1"}, {"name":"instantEpochSchema$lzy1"}, {"name":"instantSchema$lzy1"}, {"name":"localDateSchema$lzy1"}, {"name":"localDateTimeSchema$lzy1"}, {"name":"localTimeSchema$lzy1"}, {"name":"offsetDateTimeSchema$lzy1"}, {"name":"sampleDate$lzy1"}, {"name":"zonedDateTimeSchema$lzy1"}]
+},
+{
+  "name":"caliban.schema.Schema$$anon$1",
+  "fields":[{"name":"caliban$schema$Schema$$asInputType$lzy1"}, {"name":"caliban$schema$Schema$$asSubscriptionType$lzy1"}, {"name":"caliban$schema$Schema$$asType$lzy1"}]
+},
+{
+  "name":"caliban.schema.SchemaDerivation$$anon$1",
+  "fields":[{"name":"Auto$lzy1"}, {"name":"SemiAuto$lzy1"}, {"name":"auto$lzy1"}, {"name":"instantEpochSchema$lzy1"}, {"name":"instantSchema$lzy1"}, {"name":"localDateSchema$lzy1"}, {"name":"localDateTimeSchema$lzy1"}, {"name":"localTimeSchema$lzy1"}, {"name":"offsetDateTimeSchema$lzy1"}, {"name":"sampleDate$lzy1"}, {"name":"zonedDateTimeSchema$lzy1"}]
+},
+{
+  "name":"caliban.schema.SumSchema",
+  "fields":[{"name":"$1$$lzy1"}, {"name":"caliban$schema$Schema$$asInputType$lzy1"}, {"name":"caliban$schema$Schema$$asSubscriptionType$lzy1"}, {"name":"caliban$schema$Schema$$asType$lzy1"}, {"name":"isEnum$lzy1"}]
+},
+{
+  "name":"caliban.schema.TemporalSchema$TemporalSchema",
+  "fields":[{"name":"caliban$schema$Schema$$asInputType$lzy23"}, {"name":"caliban$schema$Schema$$asSubscriptionType$lzy23"}, {"name":"caliban$schema$Schema$$asType$lzy23"}]
+},
+{
+  "name":"caliban.validation.Validator$",
+  "fields":[{"name":"AllValidations$lzy1"}, {"name":"validateDirectives$lzy1"}, {"name":"validateDocumentFields$lzy1"}, {"name":"validateFragmentSpreads$lzy1"}, {"name":"validateLoneAnonymousOperation$lzy1"}, {"name":"validateOperationNameUniqueness$lzy1"}, {"name":"validateSubscriptionOperation$lzy1"}, {"name":"validateVariables$lzy1"}]
+},
+{
+  "name":"caliban.validation.package$Context",
+  "fields":[{"name":"variableDefinitions$lzy1"}]
+},
+{
+  "name":"caliban.wrappers.Wrappers$",
+  "fields":[{"name":"printErrors$lzy1"}]
+},
+{
+  "name":"com.clickhouse.data.ClickHouseFormat",
+  "fields":[{"name":"RowBinary"}, {"name":"TabSeparated"}]
+},
+{
+  "name":"com.intellij.rt.execution.application.AppMainV2$Agent",
+  "methods":[{"name":"premain","parameterTypes":["java.lang.String","java.lang.instrument.Instrumentation"] }]
+},
+{
+  "name":"com.sun.management.GcInfo",
+  "fields":[{"name":"builder"}, {"name":"extAttributes"}],
+  "methods":[{"name":"getMemoryUsageBeforeGc","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.management.OperatingSystemMXBean",
+  "methods":[{"name":"getProcessCpuTime","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.management.UnixOperatingSystemMXBean",
+  "methods":[{"name":"getMaxFileDescriptorCount","parameterTypes":[] }, {"name":"getOpenFileDescriptorCount","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.management.internal.OperatingSystemImpl",
+  "methods":[{"name":"getMaxFileDescriptorCount","parameterTypes":[] }, {"name":"getOpenFileDescriptorCount","parameterTypes":[] }, {"name":"getProcessCpuTime","parameterTypes":[] }]
+},
+{
+  "name":"com.zap.database.model.AddressRow$$anon$1",
+  "fields":[{"name":"underlying$lzy1"}]
+},
+{
+  "name":"com.zap.database.model.Ids$",
+  "fields":[{"name":"given_Column_AddressId$lzy1"}, {"name":"given_Column_PersonId$lzy1"}]
+},
+{
+  "name":"com.zap.database.model.PersonRow$$anon$1",
+  "fields":[{"name":"underlying$lzy1"}]
+},
+{
+  "name":"com.zap.graphql.GraphQLApi",
+  "fields":[{"name":"given_Schema_Any_AddressId$lzy1"}, {"name":"given_Schema_Any_PersonId$lzy1"}]
+},
+{
+  "name":"com.zap.zquery.AddressDataSource$$anon$2",
+  "fields":[{"name":"addressDataSource$lzy1"}]
+},
+{
+  "name":"com.zap.zquery.PersonDataSource$$anon$2",
+  "fields":[{"name":"allPersonsDataSource$lzy1"}, {"name":"personDataSource$lzy1"}]
+},
+{
+  "name":"fastparse.Implicits$Optioner$",
+  "fields":[{"name":"0bitmap$3"}]
+},
+{
+  "name":"fastparse.Implicits$Repeater$",
+  "fields":[{"name":"0bitmap$2"}]
+},
+{
+  "name":"fastparse.Implicits$Sequencer$",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"fastparse.IndexedParserInput",
+  "fields":[{"name":"0bitmap$2"}]
+},
+{
+  "name":"io.netty.bootstrap.ServerBootstrap$1"
+},
+{
+  "name":"io.netty.bootstrap.ServerBootstrap$ServerBootstrapAcceptor",
+  "methods":[{"name":"channelRead","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }, {"name":"exceptionCaught","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Throwable"] }]
+},
+{
+  "name":"io.netty.buffer.AbstractByteBufAllocator",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"io.netty.buffer.AbstractReferenceCountedByteBuf",
+  "fields":[{"name":"refCnt"}]
+},
+{
+  "name":"io.netty.channel.AbstractChannelHandlerContext",
+  "fields":[{"name":"handlerState"}]
+},
+{
+  "name":"io.netty.channel.ChannelDuplexHandler",
+  "methods":[{"name":"bind","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.net.SocketAddress","io.netty.channel.ChannelPromise"] }, {"name":"close","parameterTypes":["io.netty.channel.ChannelHandlerContext","io.netty.channel.ChannelPromise"] }, {"name":"connect","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.net.SocketAddress","java.net.SocketAddress","io.netty.channel.ChannelPromise"] }, {"name":"deregister","parameterTypes":["io.netty.channel.ChannelHandlerContext","io.netty.channel.ChannelPromise"] }, {"name":"disconnect","parameterTypes":["io.netty.channel.ChannelHandlerContext","io.netty.channel.ChannelPromise"] }, {"name":"flush","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"read","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"write","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object","io.netty.channel.ChannelPromise"] }]
+},
+{
+  "name":"io.netty.channel.ChannelHandlerAdapter",
+  "methods":[{"name":"exceptionCaught","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Throwable"] }]
+},
+{
+  "name":"io.netty.channel.ChannelInboundHandlerAdapter",
+  "methods":[{"name":"channelActive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelInactive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelRead","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }, {"name":"channelReadComplete","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelRegistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelUnregistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelWritabilityChanged","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"exceptionCaught","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Throwable"] }, {"name":"userEventTriggered","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }]
+},
+{
+  "name":"io.netty.channel.ChannelInitializer",
+  "methods":[{"name":"channelRegistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"exceptionCaught","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Throwable"] }]
+},
+{
+  "name":"io.netty.channel.ChannelOutboundBuffer",
+  "fields":[{"name":"totalPendingSize"}, {"name":"unwritable"}]
+},
+{
+  "name":"io.netty.channel.ChannelOutboundHandlerAdapter",
+  "methods":[{"name":"bind","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.net.SocketAddress","io.netty.channel.ChannelPromise"] }, {"name":"close","parameterTypes":["io.netty.channel.ChannelHandlerContext","io.netty.channel.ChannelPromise"] }, {"name":"connect","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.net.SocketAddress","java.net.SocketAddress","io.netty.channel.ChannelPromise"] }, {"name":"deregister","parameterTypes":["io.netty.channel.ChannelHandlerContext","io.netty.channel.ChannelPromise"] }, {"name":"disconnect","parameterTypes":["io.netty.channel.ChannelHandlerContext","io.netty.channel.ChannelPromise"] }, {"name":"flush","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"read","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }]
+},
+{
+  "name":"io.netty.channel.DefaultChannelConfig",
+  "fields":[{"name":"autoRead"}, {"name":"writeBufferWaterMark"}]
+},
+{
+  "name":"io.netty.channel.DefaultChannelPipeline",
+  "fields":[{"name":"estimatorHandle"}]
+},
+{
+  "name":"io.netty.channel.DefaultChannelPipeline$HeadContext",
+  "methods":[{"name":"bind","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.net.SocketAddress","io.netty.channel.ChannelPromise"] }, {"name":"channelActive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelInactive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelRead","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }, {"name":"channelReadComplete","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelRegistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelUnregistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelWritabilityChanged","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"close","parameterTypes":["io.netty.channel.ChannelHandlerContext","io.netty.channel.ChannelPromise"] }, {"name":"connect","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.net.SocketAddress","java.net.SocketAddress","io.netty.channel.ChannelPromise"] }, {"name":"deregister","parameterTypes":["io.netty.channel.ChannelHandlerContext","io.netty.channel.ChannelPromise"] }, {"name":"disconnect","parameterTypes":["io.netty.channel.ChannelHandlerContext","io.netty.channel.ChannelPromise"] }, {"name":"exceptionCaught","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Throwable"] }, {"name":"flush","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"read","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"userEventTriggered","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }, {"name":"write","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object","io.netty.channel.ChannelPromise"] }]
+},
+{
+  "name":"io.netty.channel.DefaultChannelPipeline$TailContext",
+  "methods":[{"name":"channelActive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelInactive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelRead","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }, {"name":"channelReadComplete","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelRegistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelUnregistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelWritabilityChanged","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"exceptionCaught","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Throwable"] }, {"name":"userEventTriggered","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }]
+},
+{
+  "name":"io.netty.channel.DefaultFileRegion"
+},
+{
+  "name":"io.netty.channel.SimpleChannelInboundHandler",
+  "methods":[{"name":"channelRead","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }]
+},
+{
+  "name":"io.netty.channel.epoll.NativeDatagramPacketArray$NativeDatagramPacket"
+},
+{
+  "name":"io.netty.channel.kqueue.KQueueEventLoop",
+  "fields":[{"name":"wakenUp"}]
+},
+{
+  "name":"io.netty.channel.unix.DatagramSocketAddress"
+},
+{
+  "name":"io.netty.channel.unix.DomainDatagramSocketAddress"
+},
+{
+  "name":"io.netty.channel.unix.FileDescriptor",
+  "fields":[{"name":"state"}]
+},
+{
+  "name":"io.netty.channel.unix.PeerCredentials"
+},
+{
+  "name":"io.netty.handler.codec.ByteToMessageDecoder",
+  "methods":[{"name":"channelInactive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelRead","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }, {"name":"channelReadComplete","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }]
+},
+{
+  "name":"io.netty.handler.codec.MessageAggregator",
+  "methods":[{"name":"channelInactive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelReadComplete","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }]
+},
+{
+  "name":"io.netty.handler.codec.MessageToMessageDecoder",
+  "methods":[{"name":"channelRead","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }]
+},
+{
+  "name":"io.netty.handler.codec.http.HttpObjectAggregator"
+},
+{
+  "name":"io.netty.handler.codec.http.HttpObjectDecoder",
+  "methods":[{"name":"userEventTriggered","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }]
+},
+{
+  "name":"io.netty.handler.codec.http.HttpObjectEncoder",
+  "methods":[{"name":"write","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object","io.netty.channel.ChannelPromise"] }]
+},
+{
+  "name":"io.netty.handler.codec.http.HttpRequestDecoder"
+},
+{
+  "name":"io.netty.handler.codec.http.HttpResponseEncoder"
+},
+{
+  "name":"io.netty.handler.codec.http.HttpServerKeepAliveHandler",
+  "methods":[{"name":"channelRead","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }, {"name":"write","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object","io.netty.channel.ChannelPromise"] }]
+},
+{
+  "name":"io.netty.handler.flush.FlushConsolidationHandler",
+  "methods":[{"name":"channelRead","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }, {"name":"channelReadComplete","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"channelWritabilityChanged","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, {"name":"close","parameterTypes":["io.netty.channel.ChannelHandlerContext","io.netty.channel.ChannelPromise"] }, {"name":"disconnect","parameterTypes":["io.netty.channel.ChannelHandlerContext","io.netty.channel.ChannelPromise"] }, {"name":"exceptionCaught","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Throwable"] }, {"name":"flush","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }]
+},
+{
+  "name":"io.netty.util.AbstractReferenceCounted",
+  "fields":[{"name":"refCnt"}]
+},
+{
+  "name":"io.netty.util.DefaultAttributeMap",
+  "fields":[{"name":"attributes"}]
+},
+{
+  "name":"io.netty.util.Recycler$DefaultHandle",
+  "fields":[{"name":"state"}]
+},
+{
+  "name":"io.netty.util.ReferenceCountUtil",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"io.netty.util.ResourceLeakDetector$DefaultResourceLeak",
+  "fields":[{"name":"droppedRecords"}, {"name":"head"}]
+},
+{
+  "name":"io.netty.util.concurrent.DefaultPromise",
+  "fields":[{"name":"result"}]
+},
+{
+  "name":"io.netty.util.concurrent.SingleThreadEventExecutor",
+  "fields":[{"name":"state"}, {"name":"threadProperties"}]
+},
+{
+  "name":"io.netty.util.internal.NativeLibraryUtil",
+  "methods":[{"name":"loadLibrary","parameterTypes":["java.lang.String","boolean"] }]
+},
+{
+  "name":"io.netty.util.internal.shaded.org.jctools.queues.BaseMpscLinkedArrayQueueColdProducerFields",
+  "fields":[{"name":"producerLimit"}]
+},
+{
+  "name":"io.netty.util.internal.shaded.org.jctools.queues.BaseMpscLinkedArrayQueueConsumerFields",
+  "fields":[{"name":"consumerIndex"}]
+},
+{
+  "name":"io.netty.util.internal.shaded.org.jctools.queues.BaseMpscLinkedArrayQueueProducerFields",
+  "fields":[{"name":"producerIndex"}]
+},
+{
+  "name":"io.netty.util.internal.shaded.org.jctools.queues.MpscArrayQueueConsumerIndexField",
+  "fields":[{"name":"consumerIndex"}]
+},
+{
+  "name":"io.netty.util.internal.shaded.org.jctools.queues.MpscArrayQueueProducerIndexField",
+  "fields":[{"name":"producerIndex"}]
+},
+{
+  "name":"io.netty.util.internal.shaded.org.jctools.queues.MpscArrayQueueProducerLimitField",
+  "fields":[{"name":"producerLimit"}]
+},
+{
+  "name":"izumi.reflect.internal.fundamentals.platform.console.TrivialLogger$Config$",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"izumi.reflect.macrortti.LightTypeTag",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"izumi.reflect.macrortti.LightTypeTag$ParsedLightTypeTag230Plus",
+  "fields":[{"name":"0bitmap$3"}]
+},
+{
+  "name":"izumi.reflect.macrortti.LightTypeTagInheritance",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"izumi.reflect.macrortti.LightTypeTagRef$FullReference",
+  "fields":[{"name":"0bitmap$6"}]
+},
+{
+  "name":"izumi.reflect.macrortti.LightTypeTagRef$IntersectionReference",
+  "fields":[{"name":"0bitmap$2"}]
+},
+{
+  "name":"izumi.reflect.macrortti.LightTypeTagRef$Lambda",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"izumi.reflect.macrortti.LightTypeTagRef$NameReference",
+  "fields":[{"name":"0bitmap$5"}]
+},
+{
+  "name":"java.io.FileDescriptor"
+},
+{
+  "name":"java.io.IOException"
+},
+{
+  "name":"java.lang.Boolean",
+  "fields":[{"name":"TYPE"}]
+},
+{
+  "name":"java.lang.Byte",
+  "fields":[{"name":"TYPE"}]
+},
+{
+  "name":"java.lang.Character",
+  "fields":[{"name":"TYPE"}]
+},
+{
+  "name":"java.lang.ClassValue"
+},
+{
+  "name":"java.lang.Double",
+  "fields":[{"name":"TYPE"}]
+},
+{
+  "name":"java.lang.Float",
+  "fields":[{"name":"TYPE"}]
+},
+{
+  "name":"java.lang.Integer",
+  "fields":[{"name":"TYPE"}]
+},
+{
+  "name":"java.lang.Long",
+  "fields":[{"name":"TYPE"}]
+},
+{
+  "name":"java.lang.OutOfMemoryError"
+},
+{
+  "name":"java.lang.ProcessHandle",
+  "methods":[{"name":"current","parameterTypes":[] }, {"name":"pid","parameterTypes":[] }]
+},
+{
+  "name":"java.lang.RuntimeException"
+},
+{
+  "name":"java.lang.Short",
+  "fields":[{"name":"TYPE"}]
+},
+{
+  "name":"java.lang.String",
+  "fields":[{"name":"TYPE"}]
+},
+{
+  "name":"java.lang.Thread",
+  "fields":[{"name":"threadLocalRandomProbe"}]
+},
+{
+  "name":"java.lang.Void",
+  "fields":[{"name":"TYPE"}]
+},
+{
+  "name":"java.lang.invoke.VarHandle",
+  "methods":[{"name":"releaseFence","parameterTypes":[] }]
+},
+{
+  "name":"java.lang.management.ManagementFactory",
+  "methods":[{"name":"getRuntimeMXBean","parameterTypes":[] }]
+},
+{
+  "name":"java.lang.management.MemoryUsage",
+  "queryAllPublicMethods":true,
+  "methods":[{"name":"from","parameterTypes":["javax.management.openmbean.CompositeData"] }]
+},
+{
+  "name":"java.lang.management.RuntimeMXBean",
+  "methods":[{"name":"getInputArguments","parameterTypes":[] }]
+},
+{
+  "name":"java.math.BigDecimal"
+},
+{
+  "name":"java.math.BigInteger"
+},
+{
+  "name":"java.net.InetSocketAddress"
+},
+{
+  "name":"java.net.PortUnreachableException"
+},
+{
+  "name":"java.nio.Bits",
+  "fields":[{"name":"UNALIGNED"}]
+},
+{
+  "name":"java.nio.Buffer",
+  "fields":[{"name":"address"}]
+},
+{
+  "name":"java.nio.ByteBuffer",
+  "methods":[{"name":"alignedSlice","parameterTypes":["int"] }]
+},
+{
+  "name":"java.nio.DirectByteBuffer",
+  "methods":[{"name":"<init>","parameterTypes":["long","int"] }]
+},
+{
+  "name":"java.nio.channels.ClosedChannelException"
+},
+{
+  "name":"java.nio.channels.FileChannel"
+},
+{
+  "name":"java.security.SecureRandomParameters"
+},
+{
+  "name":"java.sql.SQLException",
+  "fields":[{"name":"next"}]
+},
+{
+  "name":"java.util.Date"
+},
+{
+  "name":"java.util.concurrent.atomic.AtomicBoolean",
+  "fields":[{"name":"value"}]
+},
+{
+  "name":"java.util.concurrent.atomic.AtomicReference",
+  "fields":[{"name":"value"}]
+},
+{
+  "name":"java.util.concurrent.atomic.Striped64",
+  "fields":[{"name":"base"}, {"name":"cellsBusy"}]
+},
+{
+  "name":"java.util.concurrent.atomic.Striped64$Cell",
+  "fields":[{"name":"value"}]
+},
+{
+  "name":"javax.management.ObjectName"
+},
+{
+  "name":"jdk.internal.misc.Unsafe",
+  "methods":[{"name":"getUnsafe","parameterTypes":[] }]
+},
+{
+  "name":"net.jpountz.lz4.LZ4HCJNICompressor",
+  "fields":[{"name":"INSTANCE"}],
+  "methods":[{"name":"<init>","parameterTypes":["int"] }]
+},
+{
+  "name":"net.jpountz.lz4.LZ4JNICompressor",
+  "fields":[{"name":"INSTANCE"}]
+},
+{
+  "name":"net.jpountz.lz4.LZ4JNIFastDecompressor",
+  "fields":[{"name":"INSTANCE"}]
+},
+{
+  "name":"net.jpountz.lz4.LZ4JNISafeDecompressor",
+  "fields":[{"name":"INSTANCE"}]
+},
+{
+  "name":"scala.util.parsing.input.OffsetPosition",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"scala.util.parsing.input.OffsetPosition$",
+  "fields":[{"name":"0bitmap$2"}]
+},
+{
+  "name":"sun.misc.Unsafe",
+  "fields":[{"name":"theUnsafe"}],
+  "methods":[{"name":"copyMemory","parameterTypes":["java.lang.Object","long","java.lang.Object","long","long"] }, {"name":"getAndAddLong","parameterTypes":["java.lang.Object","long","long"] }, {"name":"getAndSetObject","parameterTypes":["java.lang.Object","long","java.lang.Object"] }, {"name":"invokeCleaner","parameterTypes":["java.nio.ByteBuffer"] }, {"name":"storeFence","parameterTypes":[] }]
+},
+{
+  "name":"sun.misc.VM"
+},
+{
+  "name":"sun.security.provider.NativePRNG",
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]
+},
+{
+  "name":"sun.security.provider.SHA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"zio.Chunk$",
+  "fields":[{"name":"Tags$lzy1"}]
+},
+{
+  "name":"zio.ConfigProvider$",
+  "fields":[{"name":"console$lzy1"}, {"name":"consoleProvider$lzy1"}, {"name":"defaultProvider$lzy1"}, {"name":"env$lzy1"}, {"name":"envProvider$lzy1"}, {"name":"props$lzy1"}, {"name":"propsProvider$lzy1"}, {"name":"strIndexRegex$lzy1"}, {"name":"tag$lzy1"}]
+},
+{
+  "name":"zio.Executor",
+  "fields":[{"name":"asExecutionContext$lzy1"}, {"name":"asExecutionContextExecutorService$lzy1"}, {"name":"asJava$lzy1"}]
+},
+{
+  "name":"zio.Ref$Atomic",
+  "fields":[{"name":"unsafe$lzy1"}]
+},
+{
+  "name":"zio.Schedule$$anon$29",
+  "fields":[{"name":"initial$lzy1"}]
+},
+{
+  "name":"zio.System$",
+  "fields":[{"name":"os$lzy1"}]
+},
+{
+  "name":"zio.ZEnvironment$",
+  "fields":[{"name":"TaggedAny$lzy1"}]
+},
+{
+  "name":"zio.ZIO$",
+  "fields":[{"name":"Parallelism$lzy1"}]
+},
+{
+  "name":"zio.ZLayer",
+  "fields":[{"name":"hashCode$lzy1"}]
+},
+{
+  "name":"zio.config.magnolia.DeriveConfig$",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"zio.config.package$",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"zio.http.Header$Accept",
+  "fields":[{"name":"0bitmap$3"}]
+},
+{
+  "name":"zio.http.Header$ContentType",
+  "fields":[{"name":"0bitmap$127"}]
+},
+{
+  "name":"zio.http.Header$Custom",
+  "fields":[{"name":"0bitmap$2"}]
+},
+{
+  "name":"zio.http.Header$Custom$$anon$1",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"zio.http.MediaType$",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"zio.http.MediaTypes$application$",
+  "fields":[{"name":"0bitmap$1"}, {"name":"10bitmap$1"}, {"name":"11bitmap$1"}, {"name":"12bitmap$1"}, {"name":"13bitmap$1"}, {"name":"14bitmap$1"}, {"name":"15bitmap$1"}, {"name":"16bitmap$1"}, {"name":"17bitmap$1"}, {"name":"18bitmap$1"}, {"name":"19bitmap$1"}, {"name":"1bitmap$1"}, {"name":"20bitmap$1"}, {"name":"21bitmap$1"}, {"name":"22bitmap$1"}, {"name":"23bitmap$1"}, {"name":"24bitmap$1"}, {"name":"25bitmap$1"}, {"name":"26bitmap$1"}, {"name":"27bitmap$1"}, {"name":"28bitmap$1"}, {"name":"29bitmap$1"}, {"name":"2bitmap$1"}, {"name":"30bitmap$1"}, {"name":"31bitmap$1"}, {"name":"32bitmap$1"}, {"name":"33bitmap$1"}, {"name":"34bitmap$1"}, {"name":"35bitmap$1"}, {"name":"36bitmap$1"}, {"name":"37bitmap$1"}, {"name":"38bitmap$1"}, {"name":"39bitmap$1"}, {"name":"3bitmap$1"}, {"name":"40bitmap$1"}, {"name":"41bitmap$1"}, {"name":"42bitmap$1"}, {"name":"43bitmap$1"}, {"name":"44bitmap$1"}, {"name":"45bitmap$1"}, {"name":"46bitmap$1"}, {"name":"47bitmap$1"}, {"name":"48bitmap$1"}, {"name":"49bitmap$1"}, {"name":"4bitmap$1"}, {"name":"50bitmap$1"}, {"name":"51bitmap$1"}, {"name":"5bitmap$1"}, {"name":"6bitmap$1"}, {"name":"7bitmap$1"}, {"name":"8bitmap$1"}, {"name":"9bitmap$1"}]
+},
+{
+  "name":"zio.http.MediaTypes$audio$",
+  "fields":[{"name":"0bitmap$2"}, {"name":"1bitmap$2"}, {"name":"2bitmap$2"}, {"name":"3bitmap$2"}, {"name":"4bitmap$2"}, {"name":"5bitmap$2"}]
+},
+{
+  "name":"zio.http.MediaTypes$chemical$",
+  "fields":[{"name":"0bitmap$3"}]
+},
+{
+  "name":"zio.http.MediaTypes$font$",
+  "fields":[{"name":"0bitmap$4"}]
+},
+{
+  "name":"zio.http.MediaTypes$image$",
+  "fields":[{"name":"0bitmap$5"}, {"name":"1bitmap$3"}, {"name":"2bitmap$3"}, {"name":"3bitmap$3"}]
+},
+{
+  "name":"zio.http.MediaTypes$message$",
+  "fields":[{"name":"0bitmap$6"}]
+},
+{
+  "name":"zio.http.MediaTypes$model$",
+  "fields":[{"name":"0bitmap$7"}, {"name":"1bitmap$4"}]
+},
+{
+  "name":"zio.http.MediaTypes$multipart$",
+  "fields":[{"name":"0bitmap$8"}]
+},
+{
+  "name":"zio.http.MediaTypes$text$",
+  "fields":[{"name":"0bitmap$9"}, {"name":"1bitmap$5"}, {"name":"2bitmap$4"}, {"name":"3bitmap$4"}]
+},
+{
+  "name":"zio.http.MediaTypes$video$",
+  "fields":[{"name":"0bitmap$10"}, {"name":"1bitmap$6"}, {"name":"2bitmap$5"}, {"name":"3bitmap$5"}]
+},
+{
+  "name":"zio.http.MediaTypes$x_conference$",
+  "fields":[{"name":"0bitmap$11"}]
+},
+{
+  "name":"zio.http.MediaTypes$x_shader$",
+  "fields":[{"name":"0bitmap$12"}]
+},
+{
+  "name":"zio.http.Request",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"zio.http.Response$",
+  "fields":[{"name":"0bitmap$5"}]
+},
+{
+  "name":"zio.http.Response$BasicResponse",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"zio.http.Response$ErrorResponse",
+  "fields":[{"name":"0bitmap$3"}]
+},
+{
+  "name":"zio.http.Server$",
+  "fields":[{"name":"0bitmap$6"}]
+},
+{
+  "name":"zio.http.Server$Config$",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"zio.http.Status$Accepted$",
+  "fields":[{"name":"0bitmap$6"}]
+},
+{
+  "name":"zio.http.Status$BadRequest$",
+  "fields":[{"name":"0bitmap$20"}]
+},
+{
+  "name":"zio.http.Status$Continue$",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"zio.http.Status$Created$",
+  "fields":[{"name":"0bitmap$5"}]
+},
+{
+  "name":"zio.http.Status$Forbidden$",
+  "fields":[{"name":"0bitmap$23"}]
+},
+{
+  "name":"zio.http.Status$Found$",
+  "fields":[{"name":"0bitmap$14"}]
+},
+{
+  "name":"zio.http.Status$MovedPermanently$",
+  "fields":[{"name":"0bitmap$13"}]
+},
+{
+  "name":"zio.http.Status$MultiStatus$",
+  "fields":[{"name":"0bitmap$11"}]
+},
+{
+  "name":"zio.http.Status$MultipleChoices$",
+  "fields":[{"name":"0bitmap$12"}]
+},
+{
+  "name":"zio.http.Status$NoContent$",
+  "fields":[{"name":"0bitmap$8"}]
+},
+{
+  "name":"zio.http.Status$NonAuthoritativeInformation$",
+  "fields":[{"name":"0bitmap$7"}]
+},
+{
+  "name":"zio.http.Status$NotFound$",
+  "fields":[{"name":"0bitmap$24"}]
+},
+{
+  "name":"zio.http.Status$NotModified$",
+  "fields":[{"name":"0bitmap$16"}]
+},
+{
+  "name":"zio.http.Status$Ok$",
+  "fields":[{"name":"0bitmap$4"}]
+},
+{
+  "name":"zio.http.Status$PartialContent$",
+  "fields":[{"name":"0bitmap$10"}]
+},
+{
+  "name":"zio.http.Status$PaymentRequired$",
+  "fields":[{"name":"0bitmap$22"}]
+},
+{
+  "name":"zio.http.Status$PermanentRedirect$",
+  "fields":[{"name":"0bitmap$19"}]
+},
+{
+  "name":"zio.http.Status$Processing$",
+  "fields":[{"name":"0bitmap$3"}]
+},
+{
+  "name":"zio.http.Status$ResetContent$",
+  "fields":[{"name":"0bitmap$9"}]
+},
+{
+  "name":"zio.http.Status$SeeOther$",
+  "fields":[{"name":"0bitmap$15"}]
+},
+{
+  "name":"zio.http.Status$SwitchingProtocols$",
+  "fields":[{"name":"0bitmap$2"}]
+},
+{
+  "name":"zio.http.Status$TemporaryRedirect$",
+  "fields":[{"name":"0bitmap$18"}]
+},
+{
+  "name":"zio.http.Status$Unauthorized$",
+  "fields":[{"name":"0bitmap$21"}]
+},
+{
+  "name":"zio.http.Status$UseProxy$",
+  "fields":[{"name":"0bitmap$17"}]
+},
+{
+  "name":"zio.http.netty.NettyConfig$",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"zio.http.netty.NettyConfig$LeakDetectionLevel$",
+  "fields":[{"name":"0bitmap$2"}]
+},
+{
+  "name":"zio.http.netty.server.ServerChannelInitializer"
+},
+{
+  "name":"zio.http.netty.server.ServerInboundHandler",
+  "methods":[{"name":"exceptionCaught","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Throwable"] }]
+},
+{
+  "name":"zio.http.package$",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"zio.internal.FiberRuntime",
+  "fields":[{"name":"scope$lzy1"}]
+},
+{
+  "name":"zio.internal.HeadPadding",
+  "fields":[{"name":"headCounter"}]
+},
+{
+  "name":"zio.internal.TailPadding",
+  "fields":[{"name":"tailCounter"}]
+},
+{
+  "name":"zio.internal.metrics.ConcurrentMetricHooksPlatformSpecific",
+  "fields":[{"name":"AtomicDouble$lzy1"}]
+},
+{
+  "name":"zio.metrics.connectors.prometheus.package$",
+  "fields":[{"name":"prometheusLayer$lzy1"}, {"name":"publisherLayer$lzy1"}]
+},
+{
+  "name":"zio.metrics.jvm.DefaultJvmMetrics$",
+  "fields":[{"name":"app$lzy1"}, {"name":"live$lzy1"}]
+},
+{
+  "name":"zio.package$",
+  "fields":[{"name":"EnvironmentTag$lzy1"}, {"name":"TagK$lzy1"}, {"name":"TagK3$lzy1"}, {"name":"TagKK$lzy1"}]
+},
+{
+  "name":"zio.prelude.Invariant$",
+  "fields":[{"name":"DeriveBuildFrom$lzy1"}, {"name":"Function0Covariant$lzy1"}]
+},
+{
+  "name":"zio.prelude.ZSet$",
+  "fields":[{"name":"MultiSetForEach$lzy1"}]
+},
+{
+  "name":"zio.prelude.package$",
+  "fields":[{"name":"Const$lzy1"}, {"name":"Id$lzy1"}]
+}
+]
