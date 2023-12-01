@@ -26,17 +26,6 @@ Stack:
 - anorm (Query ClickHouse with nice decoding)
 - sbt-tpolecat for scalac configuration
 
-# Endpoints
-Http server @ localhost:8080
-
-| Endpoint          | Description        |
-|-------------------|--------------------|
-| /api/graphql      | GraphQL api        |
-| /graphiql         | GraphiQL           |
-| /metrics          | Prometheus metrics |
-| /health/liveness  | Liveness           |
-| /health/readiness | Readiness          |
-
 # Run locally
 
 - Start ch docker container `(cd docker && docker-compose start)`
@@ -56,3 +45,15 @@ curl --location 'http://localhost:8080/api/graphql' \
 Requires local graalvm jdk. Tested with graalvm-ce-java17-22.3.2. 
 
 Create image `sbt graalvm-native-image:packageBin`.
+
+# Endpoints
+
+Http server @ localhost:8080
+
+| Endpoint          | Description        |
+|-------------------|--------------------|
+| /api/graphql      | GraphQL api        |
+| /graphiql         | GraphiQL           |
+| /metrics          | Prometheus metrics |
+| /health/liveness  | Liveness           |
+| /health/readiness | Readiness          |
