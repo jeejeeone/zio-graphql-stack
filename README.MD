@@ -50,3 +50,9 @@ curl --location 'http://localhost:8080/api/graphql' \
 --header 'Content-Type: application/json' \
 --data '{"query":"query {\n    persons {\n        persons {\n            name\n            address {\n                street\n            }\n        }\n    }\n}","variables":{}}'
 ```
+
+# Native image 
+
+Requires local graalvm jdk. Tested with graalvm-ce-java17-22.3.2. 
+
+Create image `sbt graalvm-native-image:packageBin`.
