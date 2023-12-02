@@ -4,7 +4,7 @@ import anorm.*
 import com.zap.database.model.util.TypeName
 
 package object model:
-  def defaultDoesNotMatchLeft(value: Any, target: String, column: ColumnName): Left[TypeDoesNotMatch, Nothing] =
+  private def defaultDoesNotMatchLeft(value: Any, target: String, column: ColumnName): Left[TypeDoesNotMatch, Nothing] =
     Left(TypeDoesNotMatch(
       s"Cannot convert $value: ${value.asInstanceOf[AnyRef].getClass} to $target for column $column"
     ))

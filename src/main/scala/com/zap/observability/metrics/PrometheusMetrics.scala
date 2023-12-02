@@ -7,11 +7,11 @@ import zio.metrics.jvm.DefaultJvmMetrics
 
 import java.time.Duration
 
-object MetricsLayers:
-  val metricsConfig =
+object PrometheusMetrics:
+  private val metricsConfig =
     ZLayer:
       ZIO.config[AppConfig.MetricsConfig](AppConfig.metricsConfig).map: config =>
         MetricsConfig(Duration.ofSeconds(config.metricsPollIntervalSeconds))
 
-  val metricsLayers =
+  val live =
     (metricsConfig ++ prometheus.publisherLayer) >+> prometheus.prometheusLayer ++ DefaultJvmMetrics.live.unit

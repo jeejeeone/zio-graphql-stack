@@ -1,11 +1,11 @@
 package com.zap
 
-import com.zap.database.ClickHouseDatabase
+import com.zap.database.ClickHouseConnection
 import com.zap.database.service.{AddressService, PersonService}
 import com.zap.graphql.GraphQLApi
 import com.zap.graphql.queries.PersonGraphQL
 import com.zap.http.HttpApp
-import com.zap.observability.metrics.MetricsLayers
+import com.zap.observability.metrics.PrometheusMetrics
 import com.zap.zquery.{AddressDataSource, PersonDataSource}
 import zio.*
 import zio.http.*
@@ -24,6 +24,6 @@ object App extends ZIOAppDefault:
         GraphQLApi.live,
         AddressDataSource.live,
         PersonDataSource.live,
-        ClickHouseDatabase.clickHouseDatabase,
-        MetricsLayers.metricsLayers,
+        ClickHouseConnection.live,
+        PrometheusMetrics.live,
       )
