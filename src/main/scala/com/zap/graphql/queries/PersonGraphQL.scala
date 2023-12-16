@@ -6,7 +6,7 @@ import com.zap.model.AddressId
 import com.zap.zquery.AddressDataSource.GetAddress
 import com.zap.zquery.PersonDataSource.GetAllPersons
 import com.zap.zquery.{AddressDataSource, PersonDataSource}
-import zio.query.{TaskQuery, UQuery, ZQuery}
+import zio.query.{TaskQuery, ZQuery}
 import zio.{URLayer, ZIO, ZLayer}
 
 trait PersonGraphQL:
@@ -25,7 +25,7 @@ case class PersonQueryLive(personDataSource: PersonDataSource, addressDataSource
     val personsQuery: TaskQuery[List[PersonRow]] =
       ZQuery.fromRequest(GetAllPersons())(personDataSource.allPersonsDataSource)
 
-    def getAddress(id: AddressId): UQuery[Option[Address]] =
+    def getAddress(id: AddressId): TaskQuery[Option[Address]] =
       ZQuery.fromRequest(GetAddress(id))(addressDataSource.addressDataSource)
         .map(addressOption => addressOption.map(addressRow => Address(addressRow.id, addressRow.street)))
 

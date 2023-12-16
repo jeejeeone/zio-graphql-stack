@@ -11,7 +11,8 @@ Following capabilities:
   - Automatic decoding to Scala types 
 - [ ] Maybe distributed tracing
 - [ ] Maybe caching with Redis
-- [x] Maybe GraalVM native image
+- [x] Maybe GraalVM native image compilation
+- [ ] Maybe runnable image using GraalVM native image
 
 Stack:
 
@@ -42,9 +43,37 @@ curl --location 'http://localhost:8080/api/graphql' \
 
 # Native image 
 
-Requires local graalvm jdk. Tested with graalvm-ce-java17-22.3.2. 
+## Compile using a container
 
-Create image `sbt graalvm-native-image:packageBin`.
+Create executable `sbt graalvm-native-image:packageBin`, compiled in a container. 
+
+- Produced to `.target/graalvm-native-image/zio-graphql-stack`.
+- Runnable on ol9 / centos9 / rhel9
+
+TODO: Unsure what's the best way to create a runnable image from native executable. Essentially `oraclelinux:9-slim` image can be used
+to run the binary. sbt-native-packager docker plugin seems very awkward, in theory with some manual work it could be used.
+
+### Create runnable image manually
+
+Example Dockerfile:
+
+```
+FROM oraclelinux:9-slim
+WORKDIR /app
+COPY ./target/graalvm-native-image/zio-graphql-stack ./
+ENTRYPOINT /app/zio-graphql-stack
+```
+
+In project directory run `docker build -t zio-graphql-stack:0.1.0-SNAPSHOT .`, then `docker run zio-graphql-stack:0.1.0-SNAPSHOT`.
+
+## Compile locally
+
+- Remove `graalVMNativeImageGraalVersion := Some("22.3.2")` from build.sbt
+- Provide correct path `-H:ConfigurationFileDirectories` in build.sbt
+- Provide native-image in PATH 
+- Run `sbt graalvm-native-image:packageBin`
+
+Above tested with graalvm-ce-java17-22.3.2.
 
 # Endpoints
 

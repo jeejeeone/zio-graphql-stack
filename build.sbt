@@ -1,9 +1,12 @@
+import com.typesafe.sbt.packager.docker.*
+
 ThisBuild / scalaVersion     := "3.3.1"
 ThisBuild / version          := "0.1.0-SNAPSHOT"
 ThisBuild / organization     := "com.zap"
 ThisBuild / organizationName := "zap"
 
 enablePlugins(GraalVMNativeImagePlugin)
+enablePlugins(DockerPlugin)
 
 lazy val root = (project in file("."))
   .settings(
@@ -52,6 +55,7 @@ lazy val root = (project in file("."))
       "--initialize-at-run-time=io.netty.channel.DefaultChannelId",
       "--initialize-at-build-time=org.slf4j.LoggerFactory",
       "-H:+ReportExceptionStackTraces",
-      s"-H:ConfigurationFileDirectories=${baseDirectory.value.getAbsolutePath}/graal/native-image",
+      s"-H:ConfigurationFileDirectories=/opt/graalvm/stage/resources/native-image",
     ),
+    graalVMNativeImageGraalVersion := Some("22.3.2"),
   )
