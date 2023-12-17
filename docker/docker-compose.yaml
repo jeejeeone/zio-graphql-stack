@@ -14,6 +14,14 @@ services:
     restart: unless-stopped
     volumes:
       - clickhouse-data:/var/lib/clickhouse
+  zio-graphql-stack:
+    image: zio-graphql-stack:0.1.0-SNAPSHOT
+    profiles:
+      - app
+    ports:
+      - "8080:8080"
+    environment:
+      CH_JDBC_URL: "jdbc:clickhouse://host.docker.internal:8123/test"
 
 volumes:
   clickhouse-data:

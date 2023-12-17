@@ -29,11 +29,19 @@ Stack:
 
 # Run locally
 
+## Local JVM
+
 - Start ch docker container `(cd docker && docker-compose start)`
-- Before first run init test data (do it once) `chmod +x docker/insert-ch-data.sh && docker/insert-ch-data.sh`
+  - Init test data once when ch is up, run init script `docker/insert-ch-data.sh`
 - Run `sbt run`
 
-Example request:
+## Native image
+
+- Publish app native image `sbt docker:publishLocal`
+- Start ch docker container and app native image container `(cd docker && docker-compose --profile app start)`
+  - Init test data once when ch is up, run init script `docker/insert-ch-data.sh`
+
+## Example request
 
 ```
 curl --location 'http://localhost:8080/api/graphql' \
@@ -41,7 +49,7 @@ curl --location 'http://localhost:8080/api/graphql' \
 --data '{"query":"query {\n    persons {\n        persons {\n            name\n            address {\n                street\n            }\n        }\n    }\n}","variables":{}}'
 ```
 
-# Native image 
+# Native image
 
 sbt-native-packager docker plugin can be used to create a runnable image ´sbt docker:publishLocal`.
 
