@@ -28,6 +28,7 @@ lazy val root = (project in file("."))
       "dev.zio"                 %% "zio-test"                          % "2.0.19" % Test,
     ),
     testFrameworks += new TestFramework("zio.test.sbt.ZTestFramework"),
+    graalVMNativeImageGraalVersion := Some("22.3.2"),
     graalVMNativeImageOptions ++= Seq(
       "--enable-http",
       "--enable-url-protocols=http,https",
@@ -55,7 +56,6 @@ lazy val root = (project in file("."))
       "-H:+ReportExceptionStackTraces",
       "-H:ConfigurationFileDirectories=/opt/graalvm/stage/resources/native-image",
     ),
-    graalVMNativeImageGraalVersion := Some("22.3.2"),
-    (Docker / mappings)            := Seq((GraalVMNativeImage / packageBin).value -> ("/opt/docker/bin/" + name.value)),
-    dockerBaseImage                := "oraclelinux:9-slim",
+    dockerBaseImage     := "oraclelinux:9-slim",
+    (Docker / mappings) := Seq((GraalVMNativeImage / packageBin).value -> ("/opt/docker/bin/" + name.value)),
   )
