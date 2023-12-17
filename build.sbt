@@ -55,7 +55,15 @@ lazy val root = (project in file("."))
       "--initialize-at-run-time=io.netty.channel.DefaultChannelId",
       "--initialize-at-build-time=org.slf4j.LoggerFactory",
       "-H:+ReportExceptionStackTraces",
-      s"-H:ConfigurationFileDirectories=/opt/graalvm/stage/resources/native-image",
+      "-H:ConfigurationFileDirectories=/opt/graalvm/stage/resources/native-image",
     ),
     graalVMNativeImageGraalVersion := Some("22.3.2"),
+    (Docker / mappings)            := Seq((GraalVMNativeImage / packageBin).value -> name.value),
+    // TODO: Use default commands instead, should be possible
+    dockerCommands := Seq(
+      Cmd("FROM", "oraclelinux:9-slim"),
+      Cmd("WORKDIR", "/app"),
+      Cmd("COPY", name.value, "./"),
+      Cmd("ENTRYPOINT", s"./${name.value}"),
+    ),
   )
