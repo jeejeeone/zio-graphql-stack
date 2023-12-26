@@ -1,6 +1,10 @@
 version: '3.8'
 
 services:
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
   clickhouse-server:
     image: clickhouse/clickhouse-server
     environment:
@@ -22,6 +26,7 @@ services:
       - "8080:8080"
     environment:
       CH_JDBC_URL: "jdbc:clickhouse://host.docker.internal:8123/test"
+      REDIS_URL: "http://host.docker.internal:6379"
 
 volumes:
   clickhouse-data:

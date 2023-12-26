@@ -1,12 +1,12 @@
 package com.zap
 
 import com.zap.database.ClickHouseConnection
-import com.zap.database.service.{AddressService, PersonService}
 import com.zap.graphql.GraphQLApi
 import com.zap.graphql.queries.PersonGraphQL
 import com.zap.http.HttpApp
 import com.zap.observability.metrics.PrometheusMetrics
-import com.zap.zquery.{AddressDataSource, PersonDataSource}
+import com.zap.redis.jedis.{JedisClient, JedisSingleConnection}
+import com.zap.zquery.{AddressDataSource, CountryDataSource, PersonDataSource}
 import zio.*
 import zio.http.*
 
@@ -19,11 +19,12 @@ object App extends ZIOAppDefault:
     yield ())
       .provide(
         PersonGraphQL.live,
-        PersonService.live,
-        AddressService.live,
         GraphQLApi.live,
         AddressDataSource.live,
         PersonDataSource.live,
+        CountryDataSource.live,
         ClickHouseConnection.live,
         PrometheusMetrics.live,
+        JedisSingleConnection.live,
+        JedisClient.live,
       )

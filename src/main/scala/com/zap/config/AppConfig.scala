@@ -15,5 +15,10 @@ object AppConfig:
       metricsPollIntervalSeconds: Int = 5
     )
 
+  case class RedisConfig(
+      redisUrl: String = "http://localhost:6379"
+    )
+
   val clickHouseConfig: Config[ClickHouseConfig] = deriveConfig[ClickHouseConfig].toSnakeCase
   val metricsConfig:    Config[MetricsConfig]    = deriveConfig[MetricsConfig].toSnakeCase
+  val redisConfig:      Config[RedisConfig]      = deriveConfig[RedisConfig].toSnakeCase

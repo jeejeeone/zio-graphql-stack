@@ -4,16 +4,17 @@ import caliban.schema.Schema
 import caliban.{RootResolver, graphQL}
 import Operations.Queries
 import caliban.wrappers.Wrappers.printErrors
-import com.zap.graphql.Schema.{Address, Person, PersonResponse}
+import com.zap.graphql.Schema.{Person, PersonResponse}
 import com.zap.graphql.queries.PersonGraphQL
-import com.zap.model.{AddressId, PersonId}
+import com.zap.model.{AddressId, CountryId, PersonId}
 import zio.{ZIO, ZLayer}
 
 case class GraphQLApi(personGraphQL: PersonGraphQL):
   import caliban.schema.Schema.auto.*
 
-  given Schema[Any, PersonId]  = Schema.intSchema.contramap(v => PersonId.unwrap(v))
-  given Schema[Any, AddressId] = Schema.intSchema.contramap(v => AddressId.unwrap(v))
+  given Schema[Any, PersonId]  = Schema.intSchema.contramap(PersonId.unwrap)
+  given Schema[Any, AddressId] = Schema.intSchema.contramap(AddressId.unwrap)
+  given Schema[Any, CountryId] = Schema.intSchema.contramap(CountryId.unwrap)
 
   val api = graphQL(RootResolver(Queries(personGraphQL.personsQuery()))) @@ printErrors
 

@@ -10,7 +10,7 @@ Following capabilities:
   - Custom decoders for CH datatypes
   - Automatic decoding to Scala types 
 - [ ] Maybe distributed tracing
-- [ ] Maybe caching with Redis
+- [x] Maybe caching with Redis
 - [x] Maybe GraalVM native image compilation
 - [x] Maybe runnable image using GraalVM native image
 
@@ -19,7 +19,7 @@ Stack:
 - zio
 - zio-prelude (newtypes)
 - zio-config
-- zio-logging with slf4j
+- jedis (redis client, gave up on zio-redis due to missing multi support)
 - zio-telemetry with opentelemtry sdk (distributed tracing)
 - caliban (GraphQL+federation support)
 - zquery (n+1 problem)

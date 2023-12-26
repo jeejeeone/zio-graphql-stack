@@ -1,9 +1,10 @@
 package com.zap.zquery
 
 import com.zap.database.model.PersonRow
-import com.zap.database.service.PersonService
+import com.zap.database.queries.PersonSqlQuery.personQuery
 import com.zap.model.*
 import com.zap.zquery.PersonDataSource.{GetAllPersons, GetPerson}
+import io.github.gaelrenoux.tranzactio.anorm.Database
 import zio.query.DataSource.Batched
 import zio.query.{CompletedRequestMap, DataSource, Request}
 import zio.{Exit, URLayer, ZIO, ZLayer}
@@ -16,19 +17,19 @@ object PersonDataSource:
   case class GetPerson(id: PersonId) extends Request[Nothing, Option[PersonRow]]
   case class GetAllPersons()         extends Request[Nothing, List[PersonRow]]
 
-  val live: URLayer[PersonService, PersonDataSource] =
+  val live: URLayer[Database.Service, PersonDataSource] =
     ZLayer:
       for
-        personService <- ZIO.service[PersonService]
+        database <- ZIO.service[Database.Service]
       yield new PersonDataSource:
         override lazy val personDataSource: UDataSource[GetPerson] =
           Batched.make[Any, GetPerson]("PersonDataSource"): requests =>
             val resultMap = CompletedRequestMap.empty
             requests.toList match
               case request :: Nil =>
-                personService.getPerson(request.id).exit.map(e => resultMap.insert(request)(e))
+                database.autoCommitOrWiden(personQuery(request.id)).exit.map(e => resultMap.insert(request)(e))
               case batch =>
-                personService.getPerson(batch.map(_.id)).fold(
+                database.autoCommitOrWiden(personQuery(batch.map(_.id))).fold(
                   err =>
                     requests.foldLeft(resultMap) { case (map, req) =>
                       map.insert(req)(Exit.fail(err))
@@ -41,4 +42,4 @@ object PersonDataSource:
 
         override lazy val allPersonsDataSource =
           DataSource.fromFunctionZIO[Any, Throwable, GetAllPersons, List[PersonRow]]("AllPersonsDataSource"): r =>
-            personService.getPersons()
+            database.autoCommitOrWiden(personQuery)

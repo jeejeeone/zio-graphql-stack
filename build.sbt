@@ -25,9 +25,13 @@ lazy val root = (project in file("."))
       "dev.zio"                 %% "zio-logging"                       % "2.1.15",
       "dev.zio"                 %% "zio-metrics-connectors"            % "2.2.1",
       "dev.zio"                 %% "zio-metrics-connectors-prometheus" % "2.2.1",
+      "dev.zio"                 %% "zio-schema"                        % "0.4.17",
+      "dev.zio"                 %% "zio-schema-protobuf"               % "0.4.9",
+      "redis.clients"            % "jedis"                             % "5.1.0",
       "dev.zio"                 %% "zio-test"                          % "2.0.19" % Test,
     ),
     testFrameworks += new TestFramework("zio.test.sbt.ZTestFramework"),
+    scalacOptions ++= Seq("-Xmax-inlines", "50"),
     graalVMNativeImageGraalVersion := Some("22.3.2"),
     graalVMNativeImageOptions ++= Seq(
       "--enable-http",

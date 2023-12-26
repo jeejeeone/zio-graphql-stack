@@ -2,14 +2,9 @@ package com.zap.database.model
 
 import anorm.*
 import anorm.SqlParser.*
-import com.clickhouse.data.value.UnsignedInteger
-import com.zap.model.{AddressId, PersonId}
+import com.zap.model.{AddressId, CountryId, PersonId}
 
 object Ids:
-  given Column[PersonId] = columnAOrB[UnsignedInteger, Int].map:
-    case v: UnsignedInteger => PersonId(v.intValue())
-    case v: Int             => PersonId(v)
-
-  given Column[AddressId] = columnAOrB[UnsignedInteger, Int].map:
-    case v: UnsignedInteger => AddressId(v.intValue())
-    case v: Int             => AddressId(v)
+  given Column[PersonId]  = ClickHouseTypes.given_Column_UnsignedInteger.map(v => PersonId(v.intValue()))
+  given Column[AddressId] = ClickHouseTypes.given_Column_UnsignedInteger.map(v => AddressId(v.intValue()))
+  given Column[CountryId] = ClickHouseTypes.given_Column_UnsignedInteger.map(v => CountryId(v.intValue()))

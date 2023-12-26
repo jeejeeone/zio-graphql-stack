@@ -5,6 +5,12 @@ schema {
 type Address {
   id: Int!
   street: String!
+  country: Country
+}
+
+type Country {
+  id: Int!
+  name: String!
 }
 
 type Person {
