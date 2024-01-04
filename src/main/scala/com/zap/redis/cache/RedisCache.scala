@@ -23,8 +23,6 @@ case class RedisCacheLive[K: ClassTag, V: Schema](
     configuration: RedisCacheConfiguration = RedisCacheConfiguration.default,
   ) extends RedisCache[K, V]:
 
-  // TODO: Fix decoding 'Failed to decode VarInt'
-
   private def decode(value: Option[ByteString]): Task[Option[V]] =
     value match
       case Some(value) => decode(value).map(v => Some(v))
@@ -36,14 +34,19 @@ case class RedisCacheLive[K: ClassTag, V: Schema](
     )
 
   def get(key: K): Task[Option[V]] =
-    jedisClient.run(jedis => ByteString.fromNullable(jedis.get(redisKey.keyString(key))))
-      .flatMap(decode)
+    jedisClient.run(jedis => ByteString.fromNullableString(jedis.get(redisKey.keyString(key))))
+      .flatMap(v => decode(v))
+      .tap(value => ZIO.logInfo(s"get: $value"))
 
+  // Doesn't cache None
   def getOrUpdate(key: K)(updateZIO: K => Task[Option[V]]): Task[Option[V]] =
     val setParams = configuration.expirationSeconds.fold(new SetParams())(expiration => new SetParams().ex(expiration))
 
-    val updateRedisZIO = updateZIO(key).tap: item =>
-      jedisClient.run(jedis => jedis.set(redisKey.keyString(key), ByteString.unwrap(RedisUtil.encode(item)), setParams))
+    val updateRedisZIO = updateZIO(key).tap:
+      case Some(item) => jedisClient.run(jedis =>
+          jedis.set(redisKey.keyString(key), ByteString.unwrap(RedisUtil.encode(item)), setParams)
+        )
+      case None => ZIO.unit
 
     get(key).flatMap:
       case None => updateRedisZIO
@@ -52,10 +55,11 @@ case class RedisCacheLive[K: ClassTag, V: Schema](
   def getMultiple(keys: List[K]): Task[Map[K, V]] =
     val redisKeys: Array[String] = keys.toArray.map(redisKey.keyString)
 
-    jedisClient.run(jedis => jedis.mget(redisKeys*).asScala.toList.map(ByteString.fromNullable))
+    jedisClient.run(jedis => jedis.mget(redisKeys*).asScala.toList.map(ByteString.fromNullableString))
       .map(values => values.filter(_.nonEmpty).map(_.get))
       .flatMap(values => ZIO.foreach(values)(value => decode(value)))
       .map(values => values.map(v => (redisKey.keyFromValue(v), v)).toMap)
+      .tap(values => ZIO.logInfo(s"getMultiple: $values"))
 
   def getMultipleOrUpdate(keys: List[K])(updateZIO: List[K] => Task[List[V]]): Task[Map[K, V]] =
     getMultiple(keys)
@@ -84,7 +88,7 @@ case class RedisCacheLive[K: ClassTag, V: Schema](
                   multi.mset(keysvalues*)
 
                   keysvalues.zipWithIndex.foreach:
-                    case (v, i) if i % 2 == 0 && configuration.expirationSeconds.nonEmpty =>
+                    case (v, i) if configuration.expirationSeconds.nonEmpty && i % 2 == 0 =>
                       multi.expire(v, configuration.expirationSeconds.get)
                     case _ => ()
 
