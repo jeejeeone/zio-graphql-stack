@@ -69,17 +69,16 @@ case class RedisCacheLive[K: ClassTag, V: Schema](
                     .flatten
                     .toArray
 
-                val t = jedis.multi()
+                val multi = jedis.multi()
 
-                t.mset(keysvalues*)
+                multi.mset(keysvalues*)
 
                 keysvalues.zipWithIndex.foreach:
                   case (v, i) if i % 2 == 0 && configuration.expirationSeconds.nonEmpty =>
-                    t.expire(v, configuration.expirationSeconds.get)
+                    multi.expire(v, configuration.expirationSeconds.get)
                   case _ => ()
 
-                t.exec()
-                ()
+                multi.exec()
           .map: fetchedValues =>
             fetchedValues.map(v => (redisKey.keyFromValue(v), v)).toMap
 
