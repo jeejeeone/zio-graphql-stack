@@ -3,14 +3,14 @@ package com.zap.zquery
 import com.zap.database.model.CountryRow
 import com.zap.database.queries.CountrySqlQuery.countryQuery
 import com.zap.model.CountryId
+import com.zap.redis.Schemas.given_Schema_CountryRow
 import com.zap.redis.cache.{RedisCacheConfiguration, RedisCacheLive, RedisKey}
 import com.zap.redis.jedis.JedisClient
 import com.zap.zquery.CountryDataSource.GetCountry
 import io.github.gaelrenoux.tranzactio.anorm.Database
 import zio.query.DataSource.Batched
 import zio.query.{CompletedRequestMap, DataSource, Request}
-import zio.{Exit, URLayer, ZIO, ZLayer}
-import com.zap.redis.Schemas.given_Schema_CountryRow
+import zio.{Exit, ZIO, ZLayer}
 
 trait CountryDataSource:
   def countryDataSource: UDataSource[GetCountry]
@@ -18,7 +18,7 @@ trait CountryDataSource:
 object CountryDataSource:
   case class GetCountry(id: CountryId) extends Request[Nothing, Option[CountryRow]]
 
-  val live: URLayer[Database.Service & JedisClient, CountryDataSource] =
+  val live =
     ZLayer:
       for
         jedisClient <- ZIO.service[JedisClient]

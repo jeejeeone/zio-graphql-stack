@@ -7,7 +7,7 @@ import com.zap.zquery.PersonDataSource.{GetAllPersons, GetPerson}
 import io.github.gaelrenoux.tranzactio.anorm.Database
 import zio.query.DataSource.Batched
 import zio.query.{CompletedRequestMap, DataSource, Request}
-import zio.{Exit, URLayer, ZIO, ZLayer}
+import zio.{Exit, ZIO, ZLayer}
 
 trait PersonDataSource:
   def personDataSource:     UDataSource[GetPerson]
@@ -17,7 +17,7 @@ object PersonDataSource:
   case class GetPerson(id: PersonId) extends Request[Nothing, Option[PersonRow]]
   case class GetAllPersons()         extends Request[Nothing, List[PersonRow]]
 
-  val live: URLayer[Database.Service, PersonDataSource] =
+  val live =
     ZLayer:
       for
         database <- ZIO.service[Database.Service]

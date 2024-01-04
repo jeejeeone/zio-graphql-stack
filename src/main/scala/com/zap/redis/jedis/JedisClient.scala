@@ -1,7 +1,7 @@
 package com.zap.redis.jedis
 
 import redis.clients.jedis.Jedis
-import zio.{RIO, Task, URLayer, ZIO, ZLayer}
+import zio.{RIO, Task, ZIO, ZLayer}
 
 trait JedisClient:
   def runZIO[R, E, A](jedisZIO: Jedis => RIO[R, A]): RIO[R, A]
@@ -15,4 +15,4 @@ case class JedisClientLive(jedisConnection: JedisConnection) extends JedisClient
     runZIO(jedis => ZIO.attemptBlocking(jedisFn(jedis)))
 
 object JedisClient:
-  val live: URLayer[JedisConnection, JedisClientLive] = ZLayer.derive[JedisClientLive]
+  val live = ZLayer.derive[JedisClientLive]

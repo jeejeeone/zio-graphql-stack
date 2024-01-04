@@ -7,7 +7,7 @@ import com.zap.zquery.AddressDataSource.GetAddress
 import io.github.gaelrenoux.tranzactio.anorm.Database
 import zio.query.DataSource.Batched
 import zio.query.{CompletedRequestMap, DataSource, Request}
-import zio.{Exit, URLayer, ZIO, ZLayer}
+import zio.{Exit, ZIO, ZLayer}
 
 trait AddressDataSource:
   def addressDataSource: UDataSource[GetAddress]
@@ -15,7 +15,7 @@ trait AddressDataSource:
 object AddressDataSource:
   case class GetAddress(id: AddressId) extends Request[Nothing, Option[AddressRow]]
 
-  val live: URLayer[Database.Service, AddressDataSource] =
+  val live =
     ZLayer:
       for
         database <- ZIO.service[Database.Service]

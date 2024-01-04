@@ -19,7 +19,4 @@ case class GraphQLApi(personGraphQL: PersonGraphQL):
   val api = graphQL(RootResolver(Queries(personGraphQL.personsQuery()))) @@ printErrors
 
 object GraphQLApi:
-  val live = ZLayer:
-    for
-      personQuery <- ZIO.service[PersonGraphQL]
-    yield GraphQLApi(personQuery)
+  val live = ZLayer.derive[GraphQLApi]

@@ -7,19 +7,14 @@ import com.zap.zquery.AddressDataSource.GetAddress
 import com.zap.zquery.CountryDataSource.GetCountry
 import com.zap.zquery.PersonDataSource.GetAllPersons
 import com.zap.zquery.{AddressDataSource, CountryDataSource, PersonDataSource}
+import zio.ZLayer
 import zio.query.{TaskQuery, ZQuery}
-import zio.{URLayer, ZIO, ZLayer}
 
 trait PersonGraphQL:
   def personsQuery(): TaskQuery[PersonResponse]
 
 object PersonGraphQL:
-  val live: URLayer[AddressDataSource & PersonDataSource & CountryDataSource, PersonQueryLive] = ZLayer:
-    for
-      personDataSource  <- ZIO.service[PersonDataSource]
-      addressDataSource <- ZIO.service[AddressDataSource]
-      countryDataSource <- ZIO.service[CountryDataSource]
-    yield PersonQueryLive(personDataSource, addressDataSource, countryDataSource)
+  val live = ZLayer.derive[PersonQueryLive]
 
 case class PersonQueryLive(
     personDataSource:  PersonDataSource,
