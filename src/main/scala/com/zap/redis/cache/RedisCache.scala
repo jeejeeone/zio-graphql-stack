@@ -2,6 +2,7 @@ package com.zap.redis.cache
 
 import com.zap.redis.jedis.JedisClient
 import com.zap.redis.util.{ByteString, RedisUtil}
+import redis.clients.jedis.params.SetParams
 import zio.schema.Schema
 import zio.{Task, ZIO}
 
@@ -16,23 +17,34 @@ trait RedisCache[K, V]:
   def getMultipleOrUpdate(keys:       List[K])(updateZIO: List[K] => Task[List[V]]): Task[Map[K, V]]
   def getMultipleOrUpdateAsList(keys: List[K])(updateZIO: List[K] => Task[List[V]]): Task[List[V]]
 
-case class RedisCacheLive[K: ClassTag, V: Schema](jedisClient: JedisClient, redisKey: RedisKey[K, V])
-    extends RedisCache[K, V]:
+case class RedisCacheLive[K: ClassTag, V: Schema](
+    jedisClient:   JedisClient,
+    redisKey:      RedisKey[K, V],
+    configuration: RedisCacheConfiguration = RedisCacheConfiguration.defaultConfiguration,
+  ) extends RedisCache[K, V]:
   private def decode(value: Option[ByteString]): Task[Option[V]] =
     value match
       case Some(value) => decode(value).map(v => Some(v))
       case None        => ZIO.succeed(None)
 
   private def decode(value: ByteString): Task[V] =
-    ZIO.fromEither(RedisUtil.decode(value)).mapError(e => new Throwable(s"Failed to decode: ${e.getMessage()}: $value", e))
+    ZIO.fromEither(RedisUtil.decode(value)).mapError(e =>
+      new Throwable(s"Failed to decode: ${e.getMessage()}: $value", e)
+    )
 
   def get(key: K): Task[Option[V]] =
     jedisClient.run(jedis => ByteString.fromNullable(jedis.get(redisKey.keyString(key))))
       .flatMap(decode)
 
   def getOrUpdate(key: K)(updateZIO: K => Task[Option[V]]): Task[Option[V]] =
+    val setParams =
+      if configuration.expirationSeconds.nonEmpty then
+        new SetParams().ex(configuration.expirationSeconds.get)
+      else
+        new SetParams()
+
     val updateRedisZIO = updateZIO(key).tap: item =>
-      jedisClient.run(jedis => jedis.set(redisKey.keyString(key), ByteString.unwrap(RedisUtil.encode(item))))
+      jedisClient.run(jedis => jedis.set(redisKey.keyString(key), ByteString.unwrap(RedisUtil.encode(item)), setParams))
 
     get(key).flatMap:
       case None => updateRedisZIO
@@ -62,7 +74,15 @@ case class RedisCacheLive[K: ClassTag, V: Schema](jedisClient: JedisClient, redi
                     .toArray
 
                 val t = jedis.multi()
+
                 t.mset(keysvalues*)
+
+                if configuration.expirationSeconds.nonEmpty then
+                  keysvalues.zipWithIndex.foreach:
+                    case (v, i) if i % 2 == 0 =>
+                      t.expire(v, configuration.expirationSeconds.get)
+                    case _ => ()
+
                 t.exec()
                 ()
           .map: fetchedValues =>
@@ -73,3 +93,8 @@ case class RedisCacheLive[K: ClassTag, V: Schema](jedisClient: JedisClient, redi
   def getMultipleOrUpdateAsList(keys: List[K])(updateZIO: List[K] => Task[List[V]]): Task[List[V]] =
     getMultipleOrUpdate(keys)(updateZIO)
       .map(_.values.toList)
+
+case class RedisCacheConfiguration(expirationSeconds: Option[Long])
+
+object RedisCacheConfiguration:
+  val defaultConfiguration = RedisCacheConfiguration(None)

@@ -16,5 +16,5 @@ case class JedisPooledConnection(pool: JedisPool) extends JedisConnection:
 object JedisSingleConnection:
   val live =
     ZLayer:
-      ZIO.config[AppConfig.RedisConfig](AppConfig.redisConfig).map:
-        redisConfig => JedisSingleConnection(() => new Jedis(redisConfig.redisUrl))
+      ZIO.config[AppConfig.RedisConfig](AppConfig.redisConfig).map: redisConfig =>
+        JedisSingleConnection(() => new Jedis(redisConfig.redisUrl))

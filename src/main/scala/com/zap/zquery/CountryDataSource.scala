@@ -3,7 +3,7 @@ package com.zap.zquery
 import com.zap.database.model.CountryRow
 import com.zap.database.queries.CountrySqlQuery.countryQuery
 import com.zap.model.CountryId
-import com.zap.redis.cache.{RedisCacheLive, RedisKey}
+import com.zap.redis.cache.{RedisCacheConfiguration, RedisCacheLive, RedisKey}
 import com.zap.redis.jedis.JedisClient
 import com.zap.zquery.CountryDataSource.GetCountry
 import io.github.gaelrenoux.tranzactio.anorm.Database
@@ -23,7 +23,8 @@ object CountryDataSource:
       for
         jedisClient <- ZIO.service[JedisClient]
         database    <- ZIO.service[Database.Service]
-        redisCache = RedisCacheLive[CountryId, CountryRow](jedisClient, RedisKey.countryKey)
+        redisCache =
+          RedisCacheLive[CountryId, CountryRow](jedisClient, RedisKey.countryKey, RedisCacheConfiguration(Some(600)))
       yield new CountryDataSource:
         override lazy val countryDataSource: UDataSource[GetCountry] =
           Batched.make[Any, GetCountry]("CountryDataSource"): requests =>
