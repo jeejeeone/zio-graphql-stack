@@ -22,6 +22,9 @@ case class RedisCacheLive[K: ClassTag, V: Schema](
     redisKey:      RedisKey[K, V],
     configuration: RedisCacheConfiguration = RedisCacheConfiguration.default,
   ) extends RedisCache[K, V]:
+
+  // TODO: Fix decoding 'Failed to decode VarInt'
+
   private def decode(value: Option[ByteString]): Task[Option[V]] =
     value match
       case Some(value) => decode(value).map(v => Some(v))
@@ -59,14 +62,14 @@ case class RedisCacheLive[K: ClassTag, V: Schema](
       .flatMap: values =>
         val missingKeys = keys.diff(values.keys.toList)
 
-        val maybeUpdate =
+        val updateValues: Task[List[V]] =
           if missingKeys.nonEmpty then
             updateZIO(missingKeys)
           else
             ZIO.succeed(List.empty)
 
-        val updateRedisZIO =
-          maybeUpdate
+        val fetchAndUpdateRedis: Task[Map[K, V]] =
+          updateValues
             .tap:
               case Nil => ZIO.unit
               case fetchedValues =>
@@ -89,7 +92,7 @@ case class RedisCacheLive[K: ClassTag, V: Schema](
             .map: fetchedValues =>
               fetchedValues.map(v => (redisKey.keyFromValue(v), v)).toMap
 
-        updateRedisZIO.map(_ ++ values)
+        fetchAndUpdateRedis.map(_ ++ values)
 
   def getMultipleOrUpdateAsList(keys: List[K])(updateZIO: List[K] => Task[List[V]]): Task[List[V]] =
     getMultipleOrUpdate(keys)(updateZIO)
