@@ -20,7 +20,7 @@ trait RedisCache[K, V]:
 case class RedisCacheLive[K: ClassTag, V: Schema](
     jedisClient:   JedisClient,
     redisKey:      RedisKey[K, V],
-    configuration: RedisCacheConfiguration = RedisCacheConfiguration.defaultConfiguration,
+    configuration: RedisCacheConfiguration = RedisCacheConfiguration.default,
   ) extends RedisCache[K, V]:
   private def decode(value: Option[ByteString]): Task[Option[V]] =
     value match
@@ -49,7 +49,7 @@ case class RedisCacheLive[K: ClassTag, V: Schema](
   def getMultiple(keys: List[K]): Task[Map[K, V]] =
     val redisKeys: Array[String] = keys.toArray.map(redisKey.keyString)
 
-    jedisClient.run(jedis => jedis.mget(redisKeys*).asScala.toList.map(v => ByteString.fromNullable(v)))
+    jedisClient.run(jedis => jedis.mget(redisKeys*).asScala.toList.map(ByteString.fromNullable))
       .map(values => values.filter(_.nonEmpty).map(_.get))
       .flatMap(values => ZIO.foreach(values)(value => decode(value)))
       .map(values => values.map(v => (redisKey.keyFromValue(v), v)).toMap)
@@ -59,28 +59,35 @@ case class RedisCacheLive[K: ClassTag, V: Schema](
       .flatMap: values =>
         val missingKeys = keys.diff(values.keys.toList)
 
-        val updateRedisZIO = updateZIO(missingKeys)
-          .tap:
-            case Nil => ZIO.unit
-            case fetchedValues =>
-              jedisClient.run: jedis =>
-                val keysvalues =
-                  fetchedValues.map(v => List(redisKey.keyStringFromValue(v), ByteString.unwrap(RedisUtil.encode(v))))
-                    .flatten
-                    .toArray
+        val maybeUpdate =
+          if missingKeys.nonEmpty then
+            updateZIO(missingKeys)
+          else
+            ZIO.succeed(List.empty)
 
-                val multi = jedis.multi()
+        val updateRedisZIO =
+          maybeUpdate
+            .tap:
+              case Nil => ZIO.unit
+              case fetchedValues =>
+                jedisClient.run: jedis =>
+                  val keysvalues =
+                    fetchedValues.map(v => List(redisKey.keyStringFromValue(v), ByteString.unwrap(RedisUtil.encode(v))))
+                      .flatten
+                      .toArray
 
-                multi.mset(keysvalues*)
+                  val multi = jedis.multi()
 
-                keysvalues.zipWithIndex.foreach:
-                  case (v, i) if i % 2 == 0 && configuration.expirationSeconds.nonEmpty =>
-                    multi.expire(v, configuration.expirationSeconds.get)
-                  case _ => ()
+                  multi.mset(keysvalues*)
 
-                multi.exec()
-          .map: fetchedValues =>
-            fetchedValues.map(v => (redisKey.keyFromValue(v), v)).toMap
+                  keysvalues.zipWithIndex.foreach:
+                    case (v, i) if i % 2 == 0 && configuration.expirationSeconds.nonEmpty =>
+                      multi.expire(v, configuration.expirationSeconds.get)
+                    case _ => ()
+
+                  multi.exec()
+            .map: fetchedValues =>
+              fetchedValues.map(v => (redisKey.keyFromValue(v), v)).toMap
 
         updateRedisZIO.map(_ ++ values)
 
@@ -91,4 +98,4 @@ case class RedisCacheLive[K: ClassTag, V: Schema](
 case class RedisCacheConfiguration(expirationSeconds: Option[Long])
 
 object RedisCacheConfiguration:
-  val defaultConfiguration = RedisCacheConfiguration(None)
+  val default = RedisCacheConfiguration(None)

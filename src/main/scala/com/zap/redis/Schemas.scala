@@ -5,5 +5,5 @@ import com.zap.model.CountryId
 import zio.schema.{DeriveSchema, Schema}
 
 object Schemas:
-  given Schema[CountryId]  = Schema[Int].transform(v => CountryId.apply(v), CountryId.unwrap)
+  given Schema[CountryId]  = Schema[Int].transform(CountryId.wrap, CountryId.unwrap)
   given Schema[CountryRow] = DeriveSchema.gen[CountryRow]
