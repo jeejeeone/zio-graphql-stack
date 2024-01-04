@@ -37,11 +37,7 @@ case class RedisCacheLive[K: ClassTag, V: Schema](
       .flatMap(decode)
 
   def getOrUpdate(key: K)(updateZIO: K => Task[Option[V]]): Task[Option[V]] =
-    val setParams =
-      if configuration.expirationSeconds.nonEmpty then
-        new SetParams().ex(configuration.expirationSeconds.get)
-      else
-        new SetParams()
+    val setParams = configuration.expirationSeconds.fold(new SetParams())(expiration => new SetParams().ex(expiration))
 
     val updateRedisZIO = updateZIO(key).tap: item =>
       jedisClient.run(jedis => jedis.set(redisKey.keyString(key), ByteString.unwrap(RedisUtil.encode(item)), setParams))
@@ -77,11 +73,10 @@ case class RedisCacheLive[K: ClassTag, V: Schema](
 
                 t.mset(keysvalues*)
 
-                if configuration.expirationSeconds.nonEmpty then
-                  keysvalues.zipWithIndex.foreach:
-                    case (v, i) if i % 2 == 0 =>
-                      t.expire(v, configuration.expirationSeconds.get)
-                    case _ => ()
+                keysvalues.zipWithIndex.foreach:
+                  case (v, i) if i % 2 == 0 && configuration.expirationSeconds.nonEmpty =>
+                    t.expire(v, configuration.expirationSeconds.get)
+                  case _ => ()
 
                 t.exec()
                 ()
