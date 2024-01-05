@@ -14,8 +14,8 @@ trait PersonDataSource:
   def allPersonsDataSource: UDataSource[GetAllPersons]
 
 object PersonDataSource:
-  case class GetPerson(id: PersonId) extends Request[Nothing, Option[PersonRow]]
-  case class GetAllPersons()         extends Request[Nothing, List[PersonRow]]
+  case class GetPerson(id: PersonId) extends Request[Throwable, Option[PersonRow]]
+  case class GetAllPersons()         extends Request[Throwable, List[PersonRow]]
 
   val live =
     ZLayer:
@@ -27,16 +27,16 @@ object PersonDataSource:
             val resultMap = CompletedRequestMap.empty
             requests.toList match
               case request :: Nil =>
-                database.autoCommitOrWiden(personQuery(request.id)).exit.map(e => resultMap.insert(request)(e))
+                database.autoCommitOrWiden(personQuery(request.id)).exit.map(e => resultMap.insert(request, e))
               case batch =>
                 database.autoCommitOrWiden(personQuery(batch.map(_.id))).fold(
                   err =>
                     requests.foldLeft(resultMap) { case (map, req) =>
-                      map.insert(req)(Exit.fail(err))
+                      map.insert(req, Exit.fail(err))
                     },
                   success =>
                     success.foldLeft(resultMap) { case (map, person) =>
-                      map.insert(GetPerson(person.id))(Exit.succeed(Some(person)))
+                      map.insert(GetPerson(person.id), Exit.succeed(Some(person)))
                     },
                 )
 

@@ -15,19 +15,20 @@ object HttpApp:
       graphQLApi          <- ZIO.service[GraphQLApi]
       database            <- ZIO.service[Database.Service]
       prometheusPublisher <- ZIO.service[PrometheusPublisher]
-      apiHandler          <- graphQLApi.api.handler
-    yield Http.collectHandler[Request]:
-      case _ -> Root / "api" / "graphql" =>
-        apiHandler
-      case _ -> Root / "graphiql" =>
-        GraphiQLHandler.handler(apiPath = "/api/graphql", graphiqlPath = "/graphiql")
-      case _ -> Root / "metrics" =>
-        Handler.fromZIO(prometheusPublisher.get.map(Response.text))
-      case _ -> Root / "health" / "liveness" =>
-        val livenessZIO =
-          database.autoCommitOrWiden(HealthQuery.healthQuery)
-            .as(Response.ok)
-            .orElseFail(Response.fromHttpError(HttpError.InternalServerError()))
-
-        Handler.fromZIO(livenessZIO)
-      case _ -> Root / "health" / "readiness" => Handler.ok
+      apiHandlers        <- graphQLApi.api.handlers
+    yield
+      Routes(
+        Method.POST / "api" / "graphql" -> 
+          apiHandlers.api,
+        Method.GET / "graphiql" -> 
+          GraphiQLHandler.handler(apiPath = "/api/graphql", graphiqlPath = "/graphiql"),
+        Method.GET / "metrics" -> 
+          Handler.fromZIO(prometheusPublisher.get.map(Response.text)),
+        Method.GET / "health" / "readiness" -> 
+          Handler.ok,
+        Method.GET / "health" / "liveness" ->
+          Handler.fromZIO:
+            database.autoCommitOrWiden(HealthQuery.healthQuery)
+              .as(Response.ok)
+              .orElseFail(Response.error(Status.InternalServerError)),
+      ).toHttpApp

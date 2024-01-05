@@ -16,7 +16,7 @@ trait CountryDataSource:
   def countryDataSource: UDataSource[GetCountry]
 
 object CountryDataSource:
-  case class GetCountry(id: CountryId) extends Request[Nothing, Option[CountryRow]]
+  case class GetCountry(id: CountryId) extends Request[Throwable, Option[CountryRow]]
 
   val live =
     ZLayer:
@@ -32,7 +32,7 @@ object CountryDataSource:
             requests.toList match
               case request :: Nil =>
                 redisCache.getOrUpdate(request.id)(key => database.autoCommitOrWiden(countryQuery(key))).exit.map(e =>
-                  resultMap.insert(request)(e)
+                  resultMap.insert(request, e)
                 )
               case batch =>
                 redisCache.getMultipleOrUpdateAsList(batch.map(_.id))(keys =>
@@ -40,10 +40,10 @@ object CountryDataSource:
                 ).fold(
                   err =>
                     requests.foldLeft(resultMap) { case (map, req) =>
-                      map.insert(req)(Exit.fail(err))
+                      map.insert(req, Exit.fail(err))
                     },
                   success =>
                     success.foldLeft(resultMap) { case (map, country) =>
-                      map.insert(GetCountry(country.id))(Exit.succeed(Some(country)))
+                      map.insert(GetCountry(country.id), Exit.succeed(Some(country)))
                     },
                 )

@@ -13,7 +13,7 @@ trait AddressDataSource:
   def addressDataSource: UDataSource[GetAddress]
 
 object AddressDataSource:
-  case class GetAddress(id: AddressId) extends Request[Nothing, Option[AddressRow]]
+  case class GetAddress(id: AddressId) extends Request[Throwable, Option[AddressRow]]
 
   val live =
     ZLayer:
@@ -25,16 +25,16 @@ object AddressDataSource:
             val resultMap = CompletedRequestMap.empty
             requests.toList match
               case request :: Nil =>
-                database.autoCommitOrWiden(addressQuery(request.id)).exit.map(e => resultMap.insert(request)(e))
+                database.autoCommitOrWiden(addressQuery(request.id)).exit.map(exit => resultMap.insert(request, exit))
               case batch =>
                 database.autoCommitOrWiden(addressQuery(batch.map(_.id)))
                   .fold(
                     err =>
                       requests.foldLeft(resultMap) { case (map, req) =>
-                        map.insert(req)(Exit.fail(err))
+                        map.insert(req, Exit.fail(err))
                       },
                     success =>
                       success.foldLeft(resultMap) { case (map, address) =>
-                        map.insert(GetAddress(address.id))(Exit.succeed(Some(address)))
+                        map.insert(GetAddress(address.id), Exit.succeed(Some(address)))
                       },
                   )

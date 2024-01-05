@@ -3,6 +3,7 @@ package com.zap.graphql
 import caliban.schema.Schema
 import caliban.{RootResolver, graphQL}
 import Operations.Queries
+import caliban.tracing.TracingWrapper
 import caliban.wrappers.Wrappers.printErrors
 import com.zap.graphql.Schema.{Person, PersonResponse}
 import com.zap.graphql.queries.PersonGraphQL
@@ -16,7 +17,7 @@ case class GraphQLApi(personGraphQL: PersonGraphQL):
   given Schema[Any, AddressId] = Schema.intSchema.contramap(AddressId.unwrap)
   given Schema[Any, CountryId] = Schema.intSchema.contramap(CountryId.unwrap)
 
-  val api = graphQL(RootResolver(Queries(personGraphQL.personsQuery()))) @@ printErrors
+  val api = graphQL(RootResolver(Queries(personGraphQL.personsQuery()))) @@ printErrors @@ TracingWrapper.traced
 
 object GraphQLApi:
   val live = ZLayer.derive[GraphQLApi]

@@ -19,6 +19,12 @@ object AppConfig:
       redisUrl: String = "http://localhost:6379"
     )
 
+  case class TracingConfig(
+      tracingUrl:     String = "http://localhost:4317",
+      tracingEnabled: Boolean = true,
+    )
+
   val clickHouseConfig: Config[ClickHouseConfig] = deriveConfig[ClickHouseConfig].toSnakeCase
   val metricsConfig:    Config[MetricsConfig]    = deriveConfig[MetricsConfig].toSnakeCase
   val redisConfig:      Config[RedisConfig]      = deriveConfig[RedisConfig].toSnakeCase
+  val tracingConfig:    Config[TracingConfig]    = deriveConfig[TracingConfig].toSnakeCase
