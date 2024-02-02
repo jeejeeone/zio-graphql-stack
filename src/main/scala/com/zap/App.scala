@@ -15,7 +15,7 @@ object App extends ZIOAppDefault:
     (for
       _       <- ZIO.logInfo("Start")
       httpApp <- HttpApp.httpAppZIO
-      _       <- Server.serve(httpApp).provide(Server.default)
+      _       <- Server.serve(httpApp).provideSome[GraphQLApi](Server.default)
     yield ())
       .provide(
         PersonGraphQL.live,

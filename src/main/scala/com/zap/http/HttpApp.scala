@@ -11,25 +11,28 @@ import zio.http.*
 import zio.metrics.connectors.prometheus.PrometheusPublisher
 
 object HttpApp:
+  // We can wrap graphql handlers with something to access request, ie decode token and provide to graphql
   val experiment = Method.POST / "api" / "graphql" -> handler {
-    (r: Request) => graphQL.provideSome[GraphQLApi](ZLayer.succeed(Token(1)))
+    (r: Request) => Console.printLine(s"R: ${r.url}") *> graphQL.provideSomeLayer[GraphQLApi](ZLayer.succeed(Token(1)))
   }.mapError(_ => Response.text("zap"))
     .flatten
 
-  // Could def graphQL(token: Token) ... ? or simply move to experiment
   val graphQL =
-    ZIO.serviceWithZIO[GraphQLApi](a => a.api.handlers zip ZIO.service[Token])
-      .map(h => h._1.api.provideLayer(ZLayer.succeed(h._2)))
+    for
+      graphQLApi <- ZIO.service[GraphQLApi]
+      token      <- ZIO.service[Token]
+      handlers   <- graphQLApi.api.handlers
+    yield handlers.api.provideLayer(ZLayer.succeed(token))
 
-  val httpAppZIO: ZIO[PrometheusPublisher & Database.Service & GraphQLApi, CalibanError.ValidationError, HttpApp[Any]] =
+  val httpAppZIO
+      : ZIO[PrometheusPublisher & Database.Service & GraphQLApi, CalibanError.ValidationError, HttpApp[GraphQLApi]] =
     for
       graphQLApi          <- ZIO.service[GraphQLApi]
       database            <- ZIO.service[Database.Service]
       prometheusPublisher <- ZIO.service[PrometheusPublisher]
       api                 <- ZIO.service[GraphQLApi]
     yield Routes(
-      // Could HttpApp[GraphQLApi]
-      experiment.provideEnvironment(ZEnvironment.apply(api)),
+      experiment,
       Method.GET / "graphiql" ->
         GraphiQLHandler.handler(apiPath = "/api/graphql", graphiqlPath = "/graphiql"),
       Method.GET / "metrics" ->
