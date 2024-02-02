@@ -1,22 +1,16 @@
 package com.zap.graphql
 
-import caliban.schema.Schema
 import caliban.wrappers.Wrappers.printErrors
-import caliban.{RootResolver, graphQL}
+import caliban.{GraphQL, RootResolver, graphQL}
 import com.zap.graphql.Operations.Queries
-import com.zap.graphql.Schema.{Person, PersonResponse}
 import com.zap.graphql.queries.PersonGraphQL
-import com.zap.model.{AddressId, CountryId, PersonId}
+import com.zap.model.Token
 import zio.{ZIO, ZLayer}
 
 case class GraphQLApi(personGraphQL: PersonGraphQL):
-  import caliban.schema.Schema.auto.*
+  import SchemaDerivation.given
 
-  given Schema[Any, PersonId]  = Schema.intSchema.contramap(PersonId.unwrap)
-  given Schema[Any, AddressId] = Schema.intSchema.contramap(AddressId.unwrap)
-  given Schema[Any, CountryId] = Schema.intSchema.contramap(CountryId.unwrap)
-
-  val api = graphQL(RootResolver(Queries(personGraphQL.personsQuery()))) @@ printErrors
+  val api: GraphQL[Token] = graphQL(RootResolver(Queries(personGraphQL.personsQuery()))) @@ printErrors
 
 object GraphQLApi:
   val live = ZLayer.derive[GraphQLApi]

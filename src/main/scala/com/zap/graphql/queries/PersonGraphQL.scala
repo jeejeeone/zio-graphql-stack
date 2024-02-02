@@ -2,16 +2,16 @@ package com.zap.graphql.queries
 
 import com.zap.database.model.PersonRow
 import com.zap.graphql.Schema.{Address, Country, Person, PersonResponse}
-import com.zap.model.{AddressId, CountryId}
+import com.zap.model.{AddressId, CountryId, Token}
 import com.zap.zquery.AddressDataSource.GetAddress
 import com.zap.zquery.CountryDataSource.GetCountry
 import com.zap.zquery.PersonDataSource.GetAllPersons
 import com.zap.zquery.{AddressDataSource, CountryDataSource, PersonDataSource}
-import zio.ZLayer
-import zio.query.{TaskQuery, ZQuery}
+import zio.{ZIO, ZLayer}
+import zio.query.{RQuery, TaskQuery, ZQuery}
 
 trait PersonGraphQL:
-  def personsQuery(): TaskQuery[PersonResponse]
+  def personsQuery(): RQuery[Token, PersonResponse]
 
 object PersonGraphQL:
   val live = ZLayer.derive[PersonQueryLive]
@@ -21,7 +21,7 @@ case class PersonQueryLive(
     addressDataSource: AddressDataSource,
     countryDataSource: CountryDataSource,
   ) extends PersonGraphQL:
-  override def personsQuery(): TaskQuery[PersonResponse] =
+  override def personsQuery(): RQuery[Token, PersonResponse] =
     val personsQuery: TaskQuery[List[PersonRow]] =
       ZQuery.fromRequest(GetAllPersons())(personDataSource.allPersonsDataSource)
 
@@ -41,6 +41,7 @@ case class PersonQueryLive(
           )
         )
 
-    personsQuery
-      .map(rows => rows.map(row => Person(row.name, row.id, getAddress(row.addressId))))
-      .map(PersonResponse.apply)
+    ZQuery.serviceWithZIO[Token](t => ZIO.logInfo(s"HELLO: $t")) *>
+      personsQuery
+        .map(rows => rows.map(row => Person(row.name, row.id, getAddress(row.addressId))))
+        .map(PersonResponse.apply)

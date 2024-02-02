@@ -8,7 +8,10 @@
 },
 {
   "name":"io.netty.channel.DefaultFileRegion",
-  "fields":[{"name":"file"}, {"name":"transferred"}]
+  "fields":[
+    {"name":"file"}, 
+    {"name":"transferred"}
+  ]
 },
 {
   "name":"io.netty.channel.kqueue.BsdSocket"
@@ -72,11 +75,17 @@
 },
 {
   "name":"java.lang.String",
-  "methods":[{"name":"lastIndexOf","parameterTypes":["int"] }, {"name":"substring","parameterTypes":["int"] }]
+  "methods":[
+    {"name":"lastIndexOf","parameterTypes":["int"] }, 
+    {"name":"substring","parameterTypes":["int"] }
+  ]
 },
 {
   "name":"java.lang.System",
-  "methods":[{"name":"getProperty","parameterTypes":["java.lang.String"] }, {"name":"setProperty","parameterTypes":["java.lang.String","java.lang.String"] }]
+  "methods":[
+    {"name":"getProperty","parameterTypes":["java.lang.String"] }, 
+    {"name":"setProperty","parameterTypes":["java.lang.String","java.lang.String"] }
+  ]
 },
 {
   "name":"java.net.InetSocketAddress",
@@ -87,8 +96,14 @@
 },
 {
   "name":"java.nio.Buffer",
-  "fields":[{"name":"limit"}, {"name":"position"}],
-  "methods":[{"name":"limit","parameterTypes":[] }, {"name":"position","parameterTypes":[] }]
+  "fields":[
+    {"name":"limit"}, 
+    {"name":"position"}
+  ],
+  "methods":[
+    {"name":"limit","parameterTypes":[] }, 
+    {"name":"position","parameterTypes":[] }
+  ]
 },
 {
   "name":"java.nio.DirectByteBuffer"
@@ -99,11 +114,25 @@
 },
 {
   "name":"sun.instrument.InstrumentationImpl",
-  "methods":[{"name":"<init>","parameterTypes":["long","boolean","boolean"] }, {"name":"loadClassAndCallAgentmain","parameterTypes":["java.lang.String","java.lang.String"] }, {"name":"loadClassAndCallPremain","parameterTypes":["java.lang.String","java.lang.String"] }, {"name":"transform","parameterTypes":["java.lang.Module","java.lang.ClassLoader","java.lang.String","java.lang.Class","java.security.ProtectionDomain","byte[]","boolean"] }]
+  "methods":[
+    {"name":"<init>","parameterTypes":["long","boolean","boolean"] }, 
+    {"name":"loadClassAndCallAgentmain","parameterTypes":["java.lang.String","java.lang.String"] }, 
+    {"name":"loadClassAndCallPremain","parameterTypes":["java.lang.String","java.lang.String"] }, 
+    {"name":"transform","parameterTypes":["java.lang.Module","java.lang.ClassLoader","java.lang.String","java.lang.Class","java.security.ProtectionDomain","byte[]","boolean"] }
+  ]
 },
 {
   "name":"sun.management.VMManagementImpl",
-  "fields":[{"name":"compTimeMonitoringSupport"}, {"name":"currentThreadCpuTimeSupport"}, {"name":"objectMonitorUsageSupport"}, {"name":"otherThreadCpuTimeSupport"}, {"name":"remoteDiagnosticCommandsSupport"}, {"name":"synchronizerUsageSupport"}, {"name":"threadAllocatedMemorySupport"}, {"name":"threadContentionMonitoringSupport"}]
+  "fields":[
+    {"name":"compTimeMonitoringSupport"}, 
+    {"name":"currentThreadCpuTimeSupport"}, 
+    {"name":"objectMonitorUsageSupport"}, 
+    {"name":"otherThreadCpuTimeSupport"}, 
+    {"name":"remoteDiagnosticCommandsSupport"}, 
+    {"name":"synchronizerUsageSupport"}, 
+    {"name":"threadAllocatedMemorySupport"}, 
+    {"name":"threadContentionMonitoringSupport"}
+  ]
 },
 {
   "name":"sun.nio.ch.FileChannelImpl",
